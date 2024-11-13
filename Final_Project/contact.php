@@ -8,6 +8,29 @@ if(isset($_COOKIE['user_id'])){
    $user_id = '';
 }
 
+if(isset($_POST['submit'])){
+
+   $name = $_POST['name']; 
+   $name = filter_var($name, FILTER_SANITIZE_STRING);
+   $email = $_POST['email']; 
+   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $number = $_POST['number']; 
+   $number = filter_var($number, FILTER_SANITIZE_STRING);
+   $msg = $_POST['msg']; 
+   $msg = filter_var($msg, FILTER_SANITIZE_STRING);
+
+   $select_contact = $conn->prepare("SELECT * FROM `contact` WHERE name = ? AND email = ? AND number = ? AND message = ?");
+   $select_contact->execute([$name, $email, $number, $msg]);
+
+   if($select_contact->rowCount() > 0){
+      $message[] = 'message sent already!';
+   }else{
+      $insert_message = $conn->prepare("INSERT INTO `contact`(name, email, number, message) VALUES(?,?,?,?)");
+      $insert_message->execute([$name, $email, $number, $msg]);
+      $message[] = 'message sent successfully!';
+   }
+
+}
 
 ?>
 
@@ -26,7 +49,7 @@ if(isset($_COOKIE['user_id'])){
 
 <?php include 'components/user_header.php'; ?>
 
-<!-- contact section -->
+<!-- contact section starts  -->
 
 <section class="contact">
 
@@ -59,9 +82,11 @@ if(isset($_COOKIE['user_id'])){
       <div class="box">
          <i class="fas fa-envelope"></i>
          <h3>email address</h3>
+        <h3>email address</h3>
          <a href="rashini@gmail.com">rashini@gmail.com</a>
          <a href="imangana@gmail.com">imangana@gmail.com</a>
       </div>
+
    </div>
 
 </section>
