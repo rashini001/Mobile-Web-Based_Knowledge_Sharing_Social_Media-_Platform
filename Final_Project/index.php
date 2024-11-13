@@ -69,7 +69,7 @@
       </div>
     </section>
 
-    <section class="discover" id="discover">
+    <section class="discover" id="discover"><a href="home.php"><font color="white">
       <div class="section__container discover__container">
         <h2 class="section__header">Discover the different modules</h2>
         <p class="section__subheader">
@@ -110,7 +110,7 @@
             </div>
             <div class="discover__card__content">
               <h4>Electronics</h4>
-              <p>
+              <p><font color="white">
               Electronics is the study of electron flow in devices, forming the backbone of modern gadgets. From phones to medical devices, electronics power innovation across industries.
               </p>
               <button class="discover__btn">
@@ -122,7 +122,7 @@
       </div>
     </section>
 
-    <section class="blogs" id="blog">
+    <section class="blogs" id="blog"><a href="home.php"><font color="white">
       <div class="blogs__container">
         <h2 class="section__header">Our Latest Modules</h2>
         <p class="section__subheader">Bridge the Gap Between Theory and Practice with Our Interactive Learning Platform...</p>
@@ -155,7 +155,7 @@
       </div>
     </section>
 
-     <section class="journals" id="journals">
+     <section class="journals" id="journals"><a href="predictions.php"><font color="white">
       <div class="section__container journals__container">
         <h2 class="section__header">Predict Your Future Career</h2>
         <p class="section__subheader">
@@ -178,7 +178,7 @@
           
         </div>
         <div class="journals__btn">
-          <button class="btn">
+          <button class="btn"><a href="predictions.php"><font color="white">
             Predict Carrer Path <i class="ri-arrow-right-line"></i>
           </button>
         </div>
@@ -186,7 +186,7 @@
     </section>
 
   
-    <section class="contact" id="contact">
+    <section class="contact" id="contact"><a href="contact.php"><font color="white">
       <div class="section__container contact__container">
         <div class="contact__col">
           <h4>Contact us </h4>
@@ -211,7 +211,7 @@
 
     <section class="footer">
       <div class="section__container footer__container">
-        <h3>ACADEMIST</h3>
+        <h3>ACADEMIST</h3><font color="white">
         <div class="footer__socials">
           <span>
             <a href="#"><i class="ri-facebook-fill"></i></a>
