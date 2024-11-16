@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "334858766405",
+    "project_id": "knowledge-sharing-app-7c75b",
+    "storage_bucket": "knowledge-sharing-app-7c75b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334858766405:android:b0b43a5d414c15024cfb2c",
+        "android_client_info": {
+          "package_name": "com.example.knowledge_sharing_app2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkXGu0qEahhfgSEKGxIWgAqcQHsZh1yNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
