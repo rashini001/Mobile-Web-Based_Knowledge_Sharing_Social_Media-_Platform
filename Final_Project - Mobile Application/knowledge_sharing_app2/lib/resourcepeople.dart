@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ResourcePeoplePage extends StatelessWidget {
+  const ResourcePeoplePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Resource People',
           style: TextStyle(color: Colors.white), // Set title color to white
         ),
-       backgroundColor: Color.fromARGB(255, 38, 27, 102), // Set AppBar color 
+       backgroundColor: const Color.fromARGB(255, 38, 27, 102), // Set AppBar color 
         elevation: 0, // Remove AppBar shadow
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Set back arrow color to white
+          icon: const Icon(Icons.arrow_back, color: Colors.white), // Set back arrow color to white
           onPressed: () {
             Navigator.pop(context); // Navigate back when pressed
           },
@@ -36,7 +38,7 @@ class ResourcePeoplePage extends StatelessWidget {
           Expanded(
             child: Container(
               color: Colors.white,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
                 mainAxisAlignment: MainAxisAlignment.center, // Center content vertically
@@ -50,29 +52,29 @@ class ResourcePeoplePage extends StatelessWidget {
                       color: Colors.brown[800], // Set text color to brown
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'Our platform connects you with a diverse group of industry experts, educators, and mentors. Whether you\'re seeking guidance on your projects, looking for career advice, or expanding your professional network, our resource people are here to help you succeed.',
                     style: TextStyle(fontSize: 16, color: Colors.grey[700]), // Set gray text color
                     textAlign: TextAlign.center, // Center the text
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'Join the conversation, collaborate on ideas, and gain insights from experienced professionals across the globe. Our experts are just a click away!',
                     style: TextStyle(fontSize: 16, color: Colors.grey[700]), // Set gray text color
                     textAlign: TextAlign.center, // Center the text
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
                       // Action for "Connect"
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 18, 4, 49), // Dark brown button color
-                      padding: EdgeInsets.symmetric(
+                      backgroundColor: const Color.fromARGB(255, 18, 4, 49), // Dark brown button color
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 16),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Connect',
                       style: TextStyle(fontSize: 16, color: Colors.white), // Button text color set to white
                     ),

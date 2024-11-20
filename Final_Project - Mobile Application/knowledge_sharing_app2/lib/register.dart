@@ -4,6 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'login.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -44,13 +46,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
       // Show a success message or navigate to another page
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Registration successful!')),
+        const SnackBar(content: Text('Registration successful!')),
       );
 
        // Navigate to the Login Page
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(builder: (context) => const LoginPage()),
     );
     }
   }
@@ -59,16 +61,16 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Register',
           style: TextStyle(color: Colors.white), // Set text color to white
         ),
-        iconTheme: IconThemeData(color: Colors.white), // Set back button arrow color to white
-        backgroundColor: Color.fromARGB(255, 38, 27, 102), // Brown app bar
+        iconTheme: const IconThemeData(color: Colors.white), // Set back button arrow color to white
+        backgroundColor: const Color.fromARGB(255, 38, 27, 102), // Brown app bar
       ),
       body: Container(
         color: Colors.grey[300], // Light gray background
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Center(
           child: SingleChildScrollView(
             child: Card(
@@ -77,19 +79,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 color: Colors.brown[50], // Light brown background for card
                 child: Form(
                   key: _formKey, // Assign the form key here
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
+                      const Text(
                         'Create Your Account', // Updated title
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color.fromARGB(197, 0, 0, 0)),
                       ),
                       
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       // Row for name and password fields
                       Row(
                         children: [
@@ -98,9 +100,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               controller: _nameController,
                               decoration: InputDecoration(
                                 labelText: 'Your Name',
-                                labelStyle: TextStyle(color: Colors.brown),
+                                labelStyle: const TextStyle(color: Colors.brown),
                                 hintText: 'Enter your name',
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.brown),
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -115,15 +117,15 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: TextFormField(
                               controller: _passwordController,
                               decoration: InputDecoration(
                                 labelText: 'Your Password',
-                                labelStyle: TextStyle(color: Colors.brown),
+                                labelStyle: const TextStyle(color: Colors.brown),
                                 hintText: 'Enter your password',
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.brown),
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -154,7 +156,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       // Row for email and confirm password fields
                       Row(
                         children: [
@@ -163,9 +165,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               controller: _emailController,
                               decoration: InputDecoration(
                                 labelText: 'Your Email',
-                                labelStyle: TextStyle(color: Colors.brown),
+                                labelStyle: const TextStyle(color: Colors.brown),
                                 hintText: 'Enter your email',
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.brown),
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -186,15 +188,15 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: TextFormField(
                               controller: _confirmPasswordController,
                               decoration: InputDecoration(
                                 labelText: 'Confirm Password',
-                                labelStyle: TextStyle(color: Colors.brown),
+                                labelStyle: const TextStyle(color: Colors.brown),
                                 hintText: 'Confirm your password',
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.brown),
                                 ),
                                 enabledBorder: OutlineInputBorder(
@@ -228,18 +230,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       // Select Image field (Updated to browse file)
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Select Image',
                               style: TextStyle(color: Colors.brown),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             GestureDetector(
                               onTap: _pickFile, // Trigger file picker when tapped
                               child: Container(
@@ -252,19 +254,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                   children: [
                                     // The "Choose File" button
                                     Container(
-                                      color: Color.fromARGB(47, 190, 29, 29), // Light gray background for button
-                                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                                      child: Text(
+                                      color: const Color.fromARGB(47, 190, 29, 29), // Light gray background for button
+                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                                      child: const Text(
                                         'Choose File',
                                         style: TextStyle(color: Colors.black),
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+                                    const SizedBox(width: 10),
                                     // Display the chosen file name
                                     Expanded(
                                       child: Text(
                                         _selectedFileName!,
-                                        style: TextStyle(color: Colors.black), // Black text for file name
+                                        style: const TextStyle(color: Colors.black), // Black text for file name
                                       ),
                                     ),
                                   ],
@@ -274,28 +276,28 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       // Register button
                       ElevatedButton(
-                        onPressed: _register, // Call register method
-                        child: Text(
+                        onPressed: _register,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 0, 0, 0), 
+                          foregroundColor: Colors.white, // White text for button
+                        ), // Call register method
+                        child: const Text(
                           'Register Now',
                           style: TextStyle(color: Colors.white), // Set button text color to white
                         ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(255, 0, 0, 0), 
-                          foregroundColor: Colors.white, // White text for button
-                        ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextButton(
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
+                            MaterialPageRoute(builder: (context) => const LoginPage()),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Already have an account? Login here',
                          style: TextStyle(color: Color.fromARGB(255, 2, 1, 10), fontWeight: FontWeight.bold), // Changed to bold
                         ),

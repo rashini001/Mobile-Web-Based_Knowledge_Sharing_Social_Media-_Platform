@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ContactUsPage extends StatelessWidget {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>(); // Key to manage the form state
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  ContactUsPage({super.key}); // Key to manage the form state
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Connect With Us',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 38, 27, 102), // Brown background color
+        backgroundColor: const Color.fromARGB(255, 38, 27, 102), // Brown background color
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context); // Navigate back when pressed
           },
@@ -41,7 +43,7 @@ class ContactUsPage extends StatelessWidget {
                     );
                   },
                   errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return Center(child: Text('Image failed to load'));
+                    return const Center(child: Text('Image failed to load'));
                   },
                 ),
               ),
@@ -53,7 +55,7 @@ class ContactUsPage extends StatelessWidget {
             child: SingleChildScrollView( // Added ScrollView to prevent overflow
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Form(
                   key: _formKey, // Set the form key
                   child: Column(
@@ -69,30 +71,30 @@ class ContactUsPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       _buildTextField('Enter your name', 'Please enter your name', isNameField: true),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       _buildTextField('Enter your email', 'Please enter a valid email'),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       _buildTextField('Enter your number', 'Please enter your number'),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       _buildTextField('Enter your message', 'Please enter your message', maxLines: 5),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               // If the form is valid, proceed with your action (e.g., sending the message)
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Sending message...')),
+                                const SnackBar(content: Text('Sending message...')),
                               );
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 0, 0, 0), //  button color
-                            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
+                            backgroundColor: const Color.fromARGB(255, 0, 0, 0), //  button color
+                            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
                           ),
-                          child: Text(
+                          child: const Text(
                             'Send Message',
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
@@ -112,12 +114,12 @@ class ContactUsPage extends StatelessWidget {
   Widget _buildTextField(String hint, String errorMessage, {bool isNameField = false, int maxLines = 1}) {
     return TextFormField(
       maxLines: maxLines,
-      cursorColor: Color.fromARGB(255, 6, 1, 29), // Change cursor color to brown
+      cursorColor: const Color.fromARGB(255, 6, 1, 29), // Change cursor color to brown
       decoration: InputDecoration(
         hintText: hint,
-        border: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 47, 10, 148))), // Change border color to brown
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 47, 10, 148))), // Change enabled border color to brown
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 47, 10, 148))), // Change focused border color to brown
+        border: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 47, 10, 148))), // Change border color to brown
+        enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 47, 10, 148))), // Change enabled border color to brown
+        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 47, 10, 148))), // Change focused border color to brown
         fillColor: Colors.grey[100],
         filled: true,
       ),

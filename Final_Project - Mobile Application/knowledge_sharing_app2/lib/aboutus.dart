@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'About Us',
           style: TextStyle(color: Colors.white), // Set title color to white for better contrast
         ),
-       backgroundColor: Color.fromARGB(255, 38, 27, 102), // Set AppBar color to brown
+       backgroundColor: const Color.fromARGB(255, 38, 27, 102), // Set AppBar color to brown
         elevation: 0, // Remove AppBar shadow
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Set back arrow color to white
+          icon: const Icon(Icons.arrow_back, color: Colors.white), // Set back arrow color to white
           onPressed: () {
             Navigator.pop(context); // Navigate back when pressed
           },
@@ -39,7 +41,7 @@ class AboutUsPage extends StatelessWidget {
                     );
                   },
                   errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return Center(child: Text('Image failed to load'));
+                    return const Center(child: Text('Image failed to load'));
                   },
                 ),
               ),
@@ -49,7 +51,7 @@ class AboutUsPage extends StatelessWidget {
           Expanded(
             child: Container(
               color: Colors.brown[50], // Light brown background color
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
                 mainAxisAlignment: MainAxisAlignment.center, // Center vertically
@@ -63,29 +65,29 @@ class AboutUsPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center, // Center the text
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'We are a vibrant knowledge-sharing platform where students and experts come together to learn, grow, and innovate. Our mission is to bridge the gap between education and real-world experience, fostering a collaborative community that encourages lifelong learning.',
                     style: TextStyle(fontSize: 16, color: Colors.brown[700]), // Darker brown for text
                     textAlign: TextAlign.center, // Center the text
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     'Whether you\'re here to share your expertise or expand your skills, our platform offers the tools and connections you need to succeed in the ever-evolving world of software engineering.',
                     style: TextStyle(fontSize: 16, color: Colors.brown[700]), // Darker brown for text
                     textAlign: TextAlign.center, // Center the text
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
                         // Action for "View Courses"
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 0, 0, 0), //  button color
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
+                        backgroundColor: const Color.fromARGB(255, 0, 0, 0), //  button color
+                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
                       ),
-                      child: Text(
+                      child: const Text(
                         'View Courses',
                         style: TextStyle(fontSize: 16, color: Colors.white), // White text on button
                       ),
