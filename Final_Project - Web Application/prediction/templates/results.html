@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1c1c1c, #383838);
+            color: white; /* Ensure text is readable */
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.8); /* 80% transparent */
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .list-group-item {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white background for list items */
+            color: white; /* Ensure text is readable */
+            border: none; /* Remove border for cleaner look */
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Top Recommended Studies with Probabilities</h1>
+        <ul class="list-group mt-3">
+            {% for recommendation in recommendations %}
+                <li class="list-group-item">{{ recommendation[0] }} with probability {{ recommendation[1] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
