@@ -29,8 +29,28 @@ Resource People: Can create courses, group chats, and assignments, and manage co
 Students: Can request courses, submit assignments, view scores, and receive career guidance.
 
 # Interfaces
-Home Page
+## Home Page
 ![home1](https://github.com/user-attachments/assets/4a36a822-b08b-4891-9aee-d20b675bfd3b)
+![about1](https://github.com/user-attachments/assets/722c64a2-bd1f-4053-b953-f64f8251706f)
+![home2](https://github.com/user-attachments/assets/cd4811cd-83c0-4f43-8a9f-ede360d1f45f)
+
+## Dashboard
+![dashboard](https://github.com/user-attachments/assets/2b57aef5-c9d8-4ed3-8fd7-2d0bb6cc9255)
+![ad dash](https://github.com/user-attachments/assets/486a09b2-15b1-4ecb-9c23-e861ad19745c)
+
+# Login & Register
+![register](https://github.com/user-attachments/assets/47a1ffa8-0961-4158-a5f2-937e95aa2cda)
+
+# Resource Person
+![re](https://github.com/user-attachments/assets/31eb698e-c3c8-4912-8cf0-e8b3efd8b6af)
+
+# Contact Us
+![contact](https://github.com/user-attachments/assets/ebd91cae-a9fa-4001-a64b-ddaef2060441)
+
+
+
+
+
 
 
 
