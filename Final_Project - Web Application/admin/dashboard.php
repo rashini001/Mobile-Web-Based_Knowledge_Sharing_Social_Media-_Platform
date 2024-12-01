@@ -26,11 +26,11 @@ $select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?"
 $select_playlists->execute([$tutor_id]);
 $total_playlists = $select_playlists->rowCount();
 
-$select_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
+$select_likes = $conn->prepare("SELECT * FROM `submissions` WHERE assignment_id = ?");
 $select_likes->execute([$tutor_id]);
 $total_likes = $select_likes->rowCount();
 
-$select_comments = $conn->prepare("SELECT * FROM `comment` WHERE tutor_id = ?");
+$select_comments = $conn->prepare("SELECT * FROM `assignments` WHERE tutor_id = ?");
 $select_comments->execute([$tutor_id]);
 $total_comments = $select_comments->rowCount();
 
@@ -77,14 +77,14 @@ $total_comments = $select_comments->rowCount();
 
       <div class="box">
          <h3><?= $total_likes; ?></h3>
-         <p>Total Likes</p>
-         <a href="contents.php" class="btn">View Contents</a>
+         <p>Total Submissions</p>
+         <a href="view_submission.php" class="btn">View Submissions</a>
       </div>
 
       <div class="box">
          <h3><?= $total_comments; ?></h3>
-         <p>Total Comments</p>
-         <a href="comments.php" class="btn">View Assignments</a>
+         <p>Total Assignments</p>
+         <a href="assignment.php" class="btn">View Assignments</a>
       </div>
 
       <div class="box">
