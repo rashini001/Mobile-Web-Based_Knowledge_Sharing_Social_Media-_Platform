@@ -25,18 +25,44 @@ if(isset($_COOKIE['user_id'])){
 
 <?php include 'components/user_header.php'; ?>
 
-<!-- courses section-->
+<!-- courses section starts  -->
 
 <section class="courses">
 
    <h1 class="heading">All Courses</h1>
 
    <div class="box-container">
-      <div class="box">
+
       <?php
-        
+         $select_courses = $conn->prepare("SELECT * FROM `playlist` WHERE status = ? ORDER BY date DESC");
+         $select_courses->execute(['active']);
+         if($select_courses->rowCount() > 0){
+            while($fetch_course = $select_courses->fetch(PDO::FETCH_ASSOC)){
+               $course_id = $fetch_course['id'];
+
+               $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE id = ?");
+               $select_tutor->execute([$fetch_course['tutor_id']]);
+               $fetch_tutor = $select_tutor->fetch(PDO::FETCH_ASSOC);
+      ?>
+      <div class="box">
+         <div class="tutor">
+            <img src="uploaded_files/<?= $fetch_tutor['image']; ?>" alt="">
+            <div>
+               <h3><?= $fetch_tutor['name']; ?></h3>
+               <span><?= $fetch_course['date']; ?></span>
+            </div>
+         </div>
+         <img src="uploaded_files/<?= $fetch_course['thumb']; ?>" class="thumb" alt="">
+         <h3 class="title"><?= $fetch_course['title']; ?></h3>
+         <div class="flex-btn">
+         <a href="playlist.php?get_id=<?= $course_id; ?>" class="inline-btn">view playlist</a>
+         <a href="view_assignment.php?get_id=<?= $course_id; ?>" class="inline-btn">view assignments</a></div>
+      </div>
+      <?php
+         }
+      }else{
          echo '<p class="empty">no courses added yet!</p>';
-     
+      }
       ?>
 
    </div>
