@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'main.dart'; // Import the DashboardPage
-import 'register.dart'; // Import RegisterPage here
+import 'package:knowledge_sharing_app2/reshome.dart'; // Import the ResHomePage file
+import 'package:knowledge_sharing_app2/register.dart'; // Import RegisterPage if needed
+// Import your main dashboard or home page
 
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ResLoginPage extends StatefulWidget {
+  const ResLoginPage({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _ResLoginPageState createState() => _ResLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ResLoginPageState extends State<ResLoginPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
- void _login() {
+  void _login() {
   const email = "user@example.com";
   const password = "password123";
 
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     print("Login Successful");
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => DashboardPage()),
+      MaterialPageRoute(builder: (context) => ResHomePage()),
     );
   } else {
     print("Login Failed");
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Login', style: TextStyle(color: Colors.white)),
+        title: const Text('Resource People Login', style: TextStyle(color: Colors.white)),
         backgroundColor: const Color.fromARGB(255, 38, 27, 102),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -82,7 +82,11 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text(
                         'Welcome Back!',
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color.fromARGB(197, 0, 0, 0)),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(197, 0, 0, 0),
+                        ),
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
@@ -153,7 +157,10 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: const Text(
                           'Don\'t have an account? Register here',
-                          style: TextStyle(color: Color.fromARGB(255, 2, 1, 10), fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 2, 1, 10),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],

@@ -1,103 +1,103 @@
 import 'package:flutter/material.dart';
 
 class CoursesPage extends StatelessWidget {
+  const CoursesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Courses',
-          style: TextStyle(color: Colors.white), // Set title color to white for better contrast
+        title: const Text(
+          'ACADEMIST...',
+          style: TextStyle(color: Colors.black),
         ),
-         backgroundColor: Color.fromARGB(255, 38, 27, 102), // Set AppBar color to brown
-        elevation: 0, // Remove AppBar shadow
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Set back arrow color to white
-          onPressed: () {
-            Navigator.pop(context); // Navigate back when pressed
-          },
-        ),
+        backgroundColor: Colors.grey[200], // Light grey background
+        elevation: 0, // Remove shadow
       ),
-      body: Row(
+      body: Column(
         children: [
-          // Left side image container
-          Expanded(
-            child: Container(
-              color: Colors.grey[300], // Light gray background color
-              child: Center(
-                child: Image.network(
-                  'https://thumbs.dreamstime.com/b/online-learning-lessons-webinar-education-courses-teacher-teaches-group-students-vector-illustration-131437671.jpg', // URL of your image
-                  fit: BoxFit.cover, // Make the image cover the entire container
-                  height: double.infinity, // Set the height to fill the container
-                  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                            : null,
+          // Search Bar
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            color: Colors.grey[200],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 600, // Set the desired width of the search bar
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'search courses...',
+                      hintStyle: TextStyle(color: Colors.grey[600]),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none,
                       ),
-                    );
-                  },
-                  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return Center(child: Text('Image failed to load'));
-                  },
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.search, color: Colors.grey),
+                        onPressed: () {
+                          // Action when the search icon is clicked
+                          print("Search icon clicked!");
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // All Courses Section
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            color: Colors.grey[200],
+            child: const Text(
+              'All Courses',
+              style: TextStyle(
+                fontSize: 24.0, // Increased font size
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 38, 77), // Dark blue color
+              ),
+            ),
+          ),
+          const Divider(height: 1, color: Colors.grey),
+          Expanded(
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: const Text(
+                  'no courses added yet!',
+                  style: TextStyle(color: Colors.red, fontSize: 16.0),
                 ),
               ),
             ),
           ),
-          // Right side text container
-          Expanded(
-            child: Container(
-              color: Colors.brown[50], // Light brown background color
-              padding: EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
-                mainAxisAlignment: MainAxisAlignment.center, // Center content vertically
-                children: [
-                  Text(
-                    "\"Expand Your Skills with Our Courses\"",
-                    textAlign: TextAlign.center, // Center the text within the widget
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.brown[900], // Dark brown text color
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Our courses are carefully crafted to provide you with practical knowledge and hands-on experience in the world of technology. Whether you\'re a beginner or an experienced professional, we have something for everyone.',
-                    textAlign: TextAlign.center, // Center the text within the widget
-                    style: TextStyle(fontSize: 16, color: Colors.brown[700]), // Darker brown for text
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Join a community of learners and experts, and take your skills to the next level with our comprehensive learning materials, interactive sessions, and real-world projects.',
-                    textAlign: TextAlign.center, // Center the text within the widget
-                    style: TextStyle(fontSize: 16, color: Colors.brown[700]), // Darker brown for text
-                  ),
-                  SizedBox(height: 40),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Action for "Start Learning"
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 0, 0, 0), // Dark brown button color
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 16),
-                      ),
-                      child: Text(
-                        'Start Learning',
-                        style: TextStyle(fontSize: 16, color: Colors.white), // White text on button
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+          // Footer
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            color: Colors.grey[200],
+            child: const Text(
+              'privacy policy | all rights reserved!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14.0, color: Color.fromARGB(255, 0, 0, 0)),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: CoursesPage(),
+  ));
 }

@@ -29,9 +29,10 @@ environment:
 # versions available, run flutter pub outdated.
 dependencies:
   flutter:
-    sdk: flutter
+   sdk: flutter
   file_picker: ^5.0.1  # Add this line for file picker functionality
-
+  firebase_core: ^3.8.0
+  firebase_database: ^11.1.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -73,6 +74,12 @@ flutter:
     - assets/blog-3.jpg
     - assets/blog-2.jpg
     - assets/blog-1.jpg
+    - assets/about.png
+    - assets/contact.png
+    - assets/chat.jpg
+    - assets/pythons.png
+
+
 
 
 

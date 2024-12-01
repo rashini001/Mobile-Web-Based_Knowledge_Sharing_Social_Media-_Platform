@@ -1,88 +1,173 @@
 import 'package:flutter/material.dart';
+import 'package:knowledge_sharing_app2/resregister.dart';
 
 class ResourcePeoplePage extends StatelessWidget {
+  const ResourcePeoplePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Resource People',
-          style: TextStyle(color: Colors.white), // Set title color to white
+          style: TextStyle(color: Colors.black),
         ),
-       backgroundColor: Color.fromARGB(255, 38, 27, 102), // Set AppBar color 
+        backgroundColor: Colors.grey[200], // Light gray background
         elevation: 0, // Remove AppBar shadow
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Set back arrow color to white
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context); // Navigate back when pressed
           },
         ),
       ),
-      body: Row(
+      body: Column(
         children: [
-          // Left side image container
+          // Expertise Search Section
+          Container(
+            color: Colors.grey[200],
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Expertise',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 38, 77), // Dark blue color
+                  ),
+                ),
+                const Divider(color: Colors.grey),
+                const SizedBox(height: 16.0),
+                Center(
+                  child: SizedBox(
+                    width: 600, // Minimized search bar width
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'search resource person...',
+                              hintStyle: TextStyle(color: Colors.grey[600]),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8.0),
+                        Container(
+                          height: 48.0,
+                          width: 48.0,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.search, color: Color.fromARGB(255, 0, 38, 77)),
+                            onPressed: () {
+                              // Search action
+                              print("Search clicked!");
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
-            child: Container(
-              color: Colors.grey[300], // light gray background color
-              child: Image.network(
-                'https://static.vecteezy.com/system/resources/previews/048/232/022/non_2x/online-courses-illustration-illustrated-online-courses-concept-with-woman-on-laptop-illustration-vector.jpg', // URL of your image
-                fit: BoxFit.cover, // Make the image cover the entire container
-                width: double.infinity,
-                height: double.infinity,
+            child: Center(
+              child: Container(
+                width: 400, // Minimized the width of the box
+                padding: const EdgeInsets.all(24.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Become A Resource Person',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 0, 38, 77), // Dark blue color
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      '"Join Us and Inspire the Next Generation of Software Engineers!" Become a part of our growing community of experts dedicated to sharing knowledge and shaping future tech leaders. Let’s work together to bridge the gap between theory and practice, empowering learners to achieve their career goals. Start making an impact today!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+              onPressed: () {
+                   print("Get Access clicked!");
+                   Navigator.push(
+                   context,
+                  MaterialPageRoute(builder: (context) => ResRegisterPage()),
+              );
+          },
+               style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 16, 3, 61), // Dark blue color
+              padding: const EdgeInsets.symmetric(
+              horizontal: 40, vertical: 12),
+     ),
+           child: const Text(
+            'Get Access',
+            style: TextStyle(fontSize: 16, color: Colors.white),
+      ),
+     ),
+                  ],
+                ),
               ),
             ),
           ),
-          // Right side text container
-          Expanded(
-            child: Container(
-              color: Colors.white,
-              padding: EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center, // Center content horizontally
-                mainAxisAlignment: MainAxisAlignment.center, // Center content vertically
-                children: [
-                  Text(
-                    "\"Connect with Experts and Mentors\"",
-                    textAlign: TextAlign.center, // Center the text
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.brown[800], // Set text color to brown
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Our platform connects you with a diverse group of industry experts, educators, and mentors. Whether you\'re seeking guidance on your projects, looking for career advice, or expanding your professional network, our resource people are here to help you succeed.',
-                    style: TextStyle(fontSize: 16, color: Colors.grey[700]), // Set gray text color
-                    textAlign: TextAlign.center, // Center the text
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'Join the conversation, collaborate on ideas, and gain insights from experienced professionals across the globe. Our experts are just a click away!',
-                    style: TextStyle(fontSize: 16, color: Colors.grey[700]), // Set gray text color
-                    textAlign: TextAlign.center, // Center the text
-                  ),
-                  SizedBox(height: 40),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action for "Connect"
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 18, 4, 49), // Dark brown button color
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 16),
-                    ),
-                    child: Text(
-                      'Connect',
-                      style: TextStyle(fontSize: 16, color: Colors.white), // Button text color set to white
-                    ),
-                  ),
-                ],
-              ),
+          // Footer
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            color: Colors.grey[200],
+            child: const Text(
+              'privacy policy | all rights reserved!',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14.0, color: Color.fromARGB(255, 8, 8, 8)),
             ),
           ),
         ],
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: ResourcePeoplePage(),
+  ));
 }

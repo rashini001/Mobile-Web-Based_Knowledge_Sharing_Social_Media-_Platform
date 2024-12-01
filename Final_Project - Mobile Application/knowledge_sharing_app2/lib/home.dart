@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:knowledge_sharing_app2/main.dart';
+import 'package:knowledge_sharing_app2/resregister.dart';
+import 'contactus.dart';
 import 'register.dart'; // Import the Register Page
 import 'aboutus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +11,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,6 +26,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -42,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     });
     Scrollable.ensureVisible(
       key.currentContext!,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       curve: Curves.easeInOut,
     );
   }
@@ -61,14 +68,14 @@ class _HomePageState extends State<HomePage> {
           Column(
             children: [
               Container(
-                color: isAboutUsSelected ? Colors.black : Colors.brown[900]?.withOpacity(0.7),
+                color: isAboutUsSelected ? Colors.black : const Color.fromARGB(255, 105, 72, 66).withOpacity(0.7),
                 
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: isSearching
                     ? Row(
                         children: [
                           IconButton(
-                            icon: Icon(Icons.arrow_back, color: Colors.white),
+                            icon: const Icon(Icons.arrow_back, color: Colors.white),
                             onPressed: () {
                               setState(() {
                                 isSearching = false;
@@ -79,8 +86,8 @@ class _HomePageState extends State<HomePage> {
                           Expanded(
                             child: TextField(
                               autofocus: true,
-                              style: TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
+                              style: const TextStyle(color: Colors.white),
+                              decoration: const InputDecoration(
                                 hintText: 'Search...',
                                 hintStyle: TextStyle(color: Colors.white54),
                                 border: InputBorder.none,
@@ -93,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.search, color: Colors.white),
+                            icon: const Icon(Icons.search, color: Colors.white),
                             onPressed: () {},
                           ),
                         ],
@@ -101,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'ACADEMIST...',
                             style: TextStyle(
                               fontSize: 24,
@@ -122,12 +129,12 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                         Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => RegisterPage()), // Navigate to RegisterPage
+                        MaterialPageRoute(builder: (context) => ResRegisterPage()), // Navigate to RegisterPage
                                );
                           },
                       ),
                               IconButton(
-                                icon: Icon(Icons.search, color: Colors.white),
+                                icon: const Icon(Icons.search, color: Colors.white),
                                 onPressed: () {
                                   setState(() {
                                     isSearching = true;
@@ -148,15 +155,15 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         key: homeKey,
                         height: MediaQuery.of(context).size.height,
-                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 150.0),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 150.0),
                                 child: Text(
                                   "Empowering Tomorrow's\nSoftware Engineers",
                                   textAlign: TextAlign.left,
@@ -167,19 +174,19 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 8),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
+                              const SizedBox(height: 8),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 8.0),
                                 child: Text(
                                   'Transforming Education with Social Learning and Smart Career Guidance',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontSize: 24,
-                                    color: const Color.fromARGB(193, 255, 255, 255),
+                                    color: Color.fromARGB(193, 255, 255, 255),
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               SignInButton(onPressed: () {
                                 Navigator.push(
                                   context,
@@ -200,8 +207,8 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start, // Adjusted alignment to start
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 50.0), // Move text up a bit
+                            const Padding(
+                              padding: EdgeInsets.only(top: 50.0), // Move text up a bit
                               child: Text(
                                 '" Empowering Learning,\n  Connecting Minds "',
                                 style: TextStyle(
@@ -211,9 +218,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 8),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0), // Adjusted the top padding
+                            const SizedBox(height: 8),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 10.0), // Adjusted the top padding
                               child: Text(
                                 "We are a vibrant knowledge-sharing platform where students and experts come together to learn, grow, and innovate. Our mission is to bridge the gap between education and real-world experience, fostering a collaborative community that encourages lifelong learning.whether you're here to share your expertise or expand your skills,our platform offers the tools and connections you need to succeed in the over-evolving world of software engineering.",
                                 style: TextStyle(
@@ -223,12 +230,12 @@ class _HomePageState extends State<HomePage> {
                                 textAlign: TextAlign.justify, // Justify the paragraph
                               ),
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             // Gray Box for Statistics
                                     Container(
-                                      padding: EdgeInsets.symmetric(vertical: 20.0),
+                                      padding: const EdgeInsets.symmetric(vertical: 20.0),
                                       color: Colors.grey[800],
-                                      child: Row(
+                                      child: const Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Column(
@@ -291,7 +298,7 @@ class _HomePageState extends State<HomePage> {
                                         ],
                                       ),
                                     ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             SignInButton(
                               onPressed: () {
                                 Navigator.push(
@@ -311,12 +318,12 @@ class _HomePageState extends State<HomePage> {
   child: SingleChildScrollView(
     child: Column(
       children: [
-        Text(
+        const Text(
           "Discover the Different Modules",
           style: TextStyle(fontSize: 38, color: Colors.white),
           textAlign: TextAlign.center,
         ),
-        Text(
+        const Text(
           "Achieve More with Seamless Learning and Expert Guidance in One Platform...",
           style: TextStyle(fontSize: 18, color: Colors.white),
           textAlign: TextAlign.center,
@@ -341,11 +348,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
 
 
         //Latest Module
-        Text(
+        const Text(
           'Our Latest Modules',
           style: TextStyle(
             fontSize: 42,
@@ -354,8 +361,8 @@ class _HomePageState extends State<HomePage> {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 30), // Space between the title and Discover More button
-        Text(
+        const SizedBox(height: 30), // Space between the title and Discover More button
+        const Text(
           'Bridge the Gap Between Theory and Practice with Our Interactive Learning Platform...',
           style: TextStyle(
             fontSize: 20,
@@ -363,7 +370,7 @@ class _HomePageState extends State<HomePage> {
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -385,7 +392,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        SizedBox(height: 100), // Add spacing at the bottom for a long page feel
+        const SizedBox(height: 100), // Add spacing at the bottom for a long page feel
       ],
     ),
   ),
@@ -399,27 +406,27 @@ class _HomePageState extends State<HomePage> {
           child: Column(
            mainAxisAlignment: MainAxisAlignment.start, // Align content to the top,
             children: [
-              Text(
+              const Text(
                 "Predict Your Future Career",
                 style: TextStyle(fontSize: 38, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 "Your Personalized Learning Experience, Now Smarter with AI and Predictive Analytics...",
                 style: TextStyle(fontSize: 18, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               
-              Container(
+              SizedBox(
                     width: 350,
                     child: Column(
                       children: [
                         Container(
                           width: 350,
                           height: 250,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/blog-5.jpg'),
                               fit: BoxFit.cover,
@@ -427,11 +434,11 @@ class _HomePageState extends State<HomePage> {
                           ),
            
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Container(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           color: Colors.grey[800],
-                          child: Text(
+                          child: const Text(
                             "\"A Beginner's Guide to Mapping Your Career Path in Software Engineering\"",
                             style: TextStyle(color: Color.fromARGB(172, 250, 249, 255), fontSize: 16 , fontWeight: FontWeight.bold) ,
                             textAlign: TextAlign.center,
@@ -440,19 +447,19 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       // Action for predicting career path
                     },
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white, backgroundColor:Color.fromARGB(83, 39, 0, 146), // Change the text color to white
-                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                      shape: RoundedRectangleBorder(
+                      foregroundColor: Colors.white, backgroundColor:const Color.fromARGB(83, 39, 0, 146), // Change the text color to white
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero, // No rounded corners (box type)
                   ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Predict Career Path ➔",
                       style: TextStyle(fontSize: 16 ,),
                     ),
@@ -469,7 +476,7 @@ SectionContainer(
   child: Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      Text(
+      const Text(
         "Contact us",
         style: TextStyle(
           fontSize: 46,
@@ -477,8 +484,8 @@ SectionContainer(
           color: Colors.white,
         ),
       ),
-      SizedBox(height: 8),
-      Text(
+      const SizedBox(height: 8),
+      const Text(
         "We always aim to reply within 24 hours...",
         style: TextStyle(
           fontSize: 20,
@@ -486,7 +493,7 @@ SectionContainer(
         ),
         textAlign: TextAlign.center,
       ),
-      SizedBox(height: 20), // Reduced height for spacing between text and circles
+      const SizedBox(height: 20), // Reduced height for spacing between text and circles
       Row(
         mainAxisAlignment: MainAxisAlignment.center, // Center alignment
         children: [
@@ -495,18 +502,30 @@ SectionContainer(
             title: "Call us",
             subtitle: "0773605287",
             description: "We are online now",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ContactUsPage()), // Navigate to Contact Us page
+              );
+            },
           ),
-          SizedBox(width: 80), // Reduced width to minimize distance between circles
+          const SizedBox(width: 80), // Reduced width to minimize distance between circles
           ContactOption(
             icon: Icons.email,
             title: "Send us an enquiry",
             subtitle: "",
             description: "We are online now",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ContactUsPage()), // Navigate to Contact Us page
+              );
+            },
           ),
         ],
       ),
-      SizedBox(height: 45), // Spacing between ContactOption and "Academist" title
-      Text(
+      const SizedBox(height: 45), // Spacing between ContactOption and "Academist" title
+      const Text(
         "ACADEMIST",
         style: TextStyle(
           fontSize: 15,
@@ -514,37 +533,36 @@ SectionContainer(
           color: Color.fromARGB(255, 127, 0, 158),
         ),
       ),
-      SizedBox(height: 10), // Spacing between "ACADEMIST" title and social icons
+      const SizedBox(height: 10), // Spacing between "ACADEMIST" title and social icons
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           IconButton(
-            
-            icon: FaIcon(FontAwesomeIcons.facebookF),
+            icon: const FaIcon(FontAwesomeIcons.facebookF),
             color: Colors.white, // White color for the icon
             onPressed: () {
               // Add your Facebook link or action here
             },
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.instagram),
+            icon: const FaIcon(FontAwesomeIcons.instagram),
             color: Colors.white, // White color for the icon
             onPressed: () {
               // Add your Instagram link or action here
             },
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.twitter),
+            icon: const FaIcon(FontAwesomeIcons.twitter),
             color: Colors.white, // White color for the icon
             onPressed: () {
               // Add your Twitter link or action here
             },
           ),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.linkedinIn),
+            icon: const FaIcon(FontAwesomeIcons.linkedinIn),
             color: Colors.white, // White color for the icon
             onPressed: () {
               // Add your LinkedIn link or action here
@@ -552,14 +570,14 @@ SectionContainer(
           ),
         ],
       ),
-       Divider(color: Colors.white38),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Copyright © 2024. All rights reserved.",
-                style: TextStyle(color: Colors.white54),
-              ),
-            ),
+      const Divider(color: Colors.white38),
+      const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "Copyright © 2024. All rights reserved.",
+          style: TextStyle(color: Colors.white54),
+        ),
+      ),
     ],
   ),
 ),
@@ -581,7 +599,7 @@ class ModuleCard extends StatelessWidget {
   final String imageAsset;
   final String description; // Added description parameter
 
-  ModuleCard({
+  const ModuleCard({super.key, 
     required this.imageAsset,
     required this.description, // Receiving description parameter
   });
@@ -611,10 +629,10 @@ class ModuleCard extends StatelessWidget {
                 left: 10,
                 right: 10,
                 child: Container(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Text(
                     description,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromARGB(221, 252, 248, 248),
                       fontSize: 19,
                       fontWeight: FontWeight.bold
@@ -625,7 +643,7 @@ class ModuleCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           
         ],
       ),
@@ -635,6 +653,7 @@ class ModuleCard extends StatelessWidget {
 
 // Section Container Widget with Custom Child
 class SectionContainer extends StatelessWidget {
+  @override
   final GlobalKey key;
   final String text;
   final Color color;
@@ -681,52 +700,59 @@ class SectionContainer extends StatelessWidget {
   }
 }
 
-// Contact Option Widget (Circular Button)
 class ContactOption extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
   final String description;
+  final VoidCallback onPressed; // This is the new onPressed callback
 
-  ContactOption({required this.icon, required this.title, required this.subtitle, required this.description});
+  const ContactOption({super.key, 
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.description,
+    required this.onPressed, // Accept onPressed in the constructor
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 80,
-          backgroundColor: Colors.white12,
-          child: Icon(icon, color: Colors.white, size: 100),
-          
-        ),
-        SizedBox(height: 10),
-        Text(
-          title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        Text(
-          subtitle,
-          style: TextStyle(fontSize: 16, color: Colors.white),
-        ),
-        Text(
-          description,
-          style: TextStyle(fontSize: 14, color: Colors.white70),
-        ),
-      ],
+    return GestureDetector(
+      onTap: onPressed, // Trigger onPressed when clicked
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 80,
+            backgroundColor: Colors.white12,
+            child: Icon(icon, color: Colors.white, size: 100),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          Text(
+            subtitle,
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          ),
+          Text(
+            description,
+            style: const TextStyle(fontSize: 14, color: Colors.white70),
+          ),
+        ],
+      ),
     );
   }
 }
 
 
 
-// Discover Card Widget for Discover Section
 class DiscoverCard extends StatelessWidget {
   final String title;
   final String description;
   final String image;
 
-  DiscoverCard({required this.title, required this.description, required this.image});
+  const DiscoverCard({super.key, required this.title, required this.description, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -738,50 +764,55 @@ class DiscoverCard extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(image, height: 200),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 title,
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 35, 27, 112)),
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 35, 27, 112),
+                ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 description,
-                style: TextStyle(fontSize: 14, color: Colors.white70),
+                style: const TextStyle(fontSize: 14, color: Colors.white70),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16), // Space between description and button
+              const SizedBox(height: 16), // Space between description and button
               ElevatedButton(
                 onPressed: () {
-                  // Action for the button, you can customize it later
+                  // Navigate to the HomePage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DashboardPage()),
+                  );
                 },
-               style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black, // Black background
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24), // Button padding
-              shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero, // Box shape (no rounded corners)
-             ),
-              side: BorderSide(color: Colors.white, width: 2), // Optional: white border for contrast
-           ),
-                 child: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Text(
-        'Discover More',
-        style: TextStyle(color: Colors.white),
-      ),
-      SizedBox(width: 8), // Space between text and icon
-      Icon(
-        Icons.arrow_forward_ios, // Arrow icon
-        color: Colors.white,
-        size: 16, // Adjust the size of the arrow as needed
-      ),
-    ],
- 
-),
-                
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black, // Black background
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24), // Button padding
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero, // Box shape (no rounded corners)
+                  ),
+                  side: const BorderSide(color: Colors.white, width: 2), // Optional: white border for contrast
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Discover More',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(width: 8), // Space between text and icon
+                    Icon(
+                      Icons.arrow_forward_ios, // Arrow icon
+                      color: Colors.white,
+                      size: 16, // Adjust the size of the arrow as needed
+                    ),
+                  ],
+                ),
               ),
-              
-           ],
+            ],
           ),
         ),
       ),
@@ -789,12 +820,13 @@ class DiscoverCard extends StatelessWidget {
   }
 }
 
+
 // Navigation Button Widget
 class NavButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
 
-  NavButton({required this.text, required this.onTap});
+  const NavButton({super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -804,7 +836,7 @@ class NavButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Text(
           text,
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          style: const TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
       
@@ -819,7 +851,7 @@ class SignInButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
 
-  SignInButton({required this.onPressed, this.text = 'Sign In'});
+  const SignInButton({super.key, required this.onPressed, this.text = 'Get Started'});
 
   @override
   Widget build(BuildContext context) {
@@ -830,8 +862,8 @@ class SignInButton extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color.fromARGB(255, 35, 6, 131),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 19),
+            backgroundColor: const Color.fromARGB(255, 35, 6, 131),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 19),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6),
             ),
@@ -839,8 +871,8 @@ class SignInButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(text, style: TextStyle(color: Colors.white)),
-              Icon(Icons.arrow_forward, color: Colors.white),
+              Text(text, style: const TextStyle(color: Colors.white)),
+              const Icon(Icons.arrow_forward, color: Colors.white),
             ],
           ),
           

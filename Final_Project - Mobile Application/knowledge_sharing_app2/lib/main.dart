@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:knowledge_sharing_app2/chat.dart';
 import 'package:knowledge_sharing_app2/contactus.dart';
 import 'package:knowledge_sharing_app2/courses.dart';
+import 'package:knowledge_sharing_app2/quize.dart';
 import 'package:knowledge_sharing_app2/resourcepeople.dart';
-
-// Import the LoginPage, RegisterPage, and AboutUsPage classes
+import 'package:knowledge_sharing_app2/resregister.dart';
 import 'login.dart'; // Assuming the LoginPage code is in login_page.dart
 import 'register.dart'; // Assuming the RegisterPage code is in register_page.dart
 import 'home.dart';
@@ -14,6 +15,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,85 +29,99 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Dashboard Page Class
 class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300], // Set background color to light gray
-      drawer: SideNavigation(), // Placeholder for Side Navigation
+      backgroundColor: Colors.grey[300],
+      drawer: SideNavigation(),
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('ACADEMIST...'),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: TextField(
-                  style: TextStyle(color: Color.fromARGB(181, 77, 3, 3)), // Set entered text color to white
-                  cursorColor: Colors.brown, // Set cursor color to brown
-                  decoration: InputDecoration(
-                    hintText: "Search Courses...",
-                    hintStyle: TextStyle(color: Color.fromARGB(255, 248, 243, 243)), // Set placeholder text color to white
-                    filled: true,
-                    fillColor: Colors.brown[200], // Set background color of the search bar to light brown
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide.none,
-                    ),
-                    suffixIcon: Icon(Icons.search, color: Colors.white), // Set icon color to white
+            const Text(
+              'ACADEMIST...',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 550,
+              child: TextField(
+                style: const TextStyle(color: Colors.black),
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  hintText: "search courses...",
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide.none,
                   ),
+                  suffixIcon: const Icon(Icons.search, color: Colors.grey),
                 ),
               ),
             ),
+            const Spacer(),
+            Row(
+              children: [
+                IconButton(
+                     iconSize: 30, // Set a larger size for the icon
+                     icon: const Icon(Icons.account_circle, color: Colors.black),
+                     onPressed: () {
+                     print('Profile icon pressed');
+                },
+             ),
+             
+
+                IconButton(
+                   iconSize: 30,
+                  icon: const Icon(Icons.settings, color: Colors.black),
+                  onPressed: () {
+                    print('Settings icon pressed');
+                  },
+                ),
+              ],
+            ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.account_circle, color: Color.fromARGB(216, 170, 31, 7)), // Set profile icon color to brown
-            onPressed: () {
-              // Add action for profile button
-              print('Profile icon pressed');
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.settings, color: Color.fromARGB(204, 170, 5, 5)), // Set settings icon color to brown
-            onPressed: () {
-              // Add action for settings button
-              print('Settings icon pressed');
-            },
-          ),
-        ],
       ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
                   child: QuickOptionsSection(),
                 ),
-                SizedBox(width: 8), // Spacing between sections
+                const SizedBox(width: 8),
                 Expanded(
-                  child: TopCategoriesSection(), // Updated Top Categories Section
+                  child: TopCategoriesSection(),
                 ),
-                SizedBox(width: 8), // Spacing between sections
+                const SizedBox(width: 8),
                 Expanded(
-                  child: PopularTopicsSection(), // Updated Popular Topics Section
+                  child: PopularTopicsSection(),
                 ),
-                SizedBox(width: 8), // Spacing between sections
+                const SizedBox(width: 8),
                 Expanded(
-                  child: ResourcePersonSection(), // Placeholder for Resource Persons
+                  child: ResourcePersonSection(),
                 ),
               ],
             ),
-            Spacer(), // This will push the footer to the bottom
-            Footer(), // Add footer
+            const Spacer(),
+            Footer(),
           ],
         ),
       ),
@@ -112,70 +129,149 @@ class DashboardPage extends StatelessWidget {
   }
 }
 
-// Side Navigation Class
+
 class SideNavigation extends StatelessWidget {
+  const SideNavigation({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.brown,
-            ),
-            child: Text(
-              '',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+          // Drawer Header
+          Container(
+            color: Colors.white, // Background color for the header
+            padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Center(
+                  child: Text(
+                    'please login or register',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Login Button
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red[900],
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    // Register Button
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red[900],
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
+          // Navigation Items
           ListTile(
-            leading: Icon(Icons.dashboard, color: Color.fromARGB(255, 4, 3, 105)),
-            title: Text('Dashboard'),
+            leading: const Icon(Icons.dashboard, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('Dashboard'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
             },
           ),
           ListTile(
-            leading: Icon(Icons.info, color: Color.fromARGB(255, 4, 3, 105)),
-            title: Text('About Us'),
+            leading: const Icon(Icons.info, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('About Us'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AboutUsPage()), // Navigate to AboutUsPage
+                MaterialPageRoute(builder: (context) => AboutUsPage()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.school,color: Color.fromARGB(255, 4, 3, 105)),
-            title: Text('Courses'),
+            leading: const Icon(Icons.school, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('Courses'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CoursesPage()), // Navigate to CoursesPage
+                MaterialPageRoute(builder: (context) => CoursesPage()),
+              );
+            },
+          ),
+          
+          ListTile(
+            leading: const Icon(Icons.people, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('Resource People'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResourcePeoplePage()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.people, color: Color.fromARGB(255, 4, 3, 105)),
-            title: Text('Resource People'),
+            leading: const Icon(Icons.quiz, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('Quiz'),
             onTap: () {
-               Navigator.push(
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResourcePeoplePage()), // Navigate to ResourcePage
+                MaterialPageRoute(builder: (context) => QuizPage()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.contact_mail, color: Color.fromARGB(255, 4, 3, 105)),
-            title: Text('Contact Us'),
+            leading: const Icon(Icons.chat, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('Chat'),
             onTap: () {
-               Navigator.push(
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ContactUsPage()), // Navigate to CntactUsPage
+                MaterialPageRoute(builder: (context) => ChatScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.contact_mail, color: Color.fromARGB(255, 4, 3, 105)),
+            title: const Text('Contact Us'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ContactUsPage()),
               );
             },
           ),
@@ -185,12 +281,15 @@ class SideNavigation extends StatelessWidget {
   }
 }
 
+
 // Quick Options Section Class (remains unchanged)
 class QuickOptionsSection extends StatelessWidget {
+  const QuickOptionsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
@@ -199,12 +298,12 @@ class QuickOptionsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Please Login or Register',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -216,13 +315,13 @@ class QuickOptionsSection extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
-                  child: Text('Login', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:  Color.fromARGB(255, 131, 8, 8),
+                    backgroundColor:  const Color.fromARGB(255, 131, 8, 8),
                   ),
+                  child: Text('Login', style: TextStyle(color: Colors.white)),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: OutlinedButton(
                   onPressed: () {
@@ -231,12 +330,12 @@ class QuickOptionsSection extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => RegisterPage()),
                     );
                   },
-                  child: Text('Register', style: TextStyle(color: Colors.white)),
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.brown),
-                    backgroundColor:  Color.fromARGB(255, 131, 8, 8),
+                    side: const BorderSide(color: Colors.brown),
+                    backgroundColor:  const Color.fromARGB(255, 131, 8, 8),
                     foregroundColor: Colors.white,
                   ),
+                  child: Text('Register', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],
@@ -249,10 +348,12 @@ class QuickOptionsSection extends StatelessWidget {
 
 // Updated Top Categories Section with buttons
 class TopCategoriesSection extends StatelessWidget {
+  const TopCategoriesSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
@@ -260,8 +361,8 @@ class TopCategoriesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Top Categories', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          SizedBox(height: 16),
+          const Text('Top Categories', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 16),
           Wrap(
             spacing: 10,
             runSpacing: 10,
@@ -286,7 +387,7 @@ class TopCategoriesSection extends StatelessWidget {
 class CategoryButton extends StatelessWidget {
   final String title;
 
-  CategoryButton({required this.title});
+  const CategoryButton({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -294,23 +395,25 @@ class CategoryButton extends StatelessWidget {
       onPressed: () {
         // Placeholder for navigation action
         print('$title button pressed');
-      },
-      child: Text(title, style: TextStyle(color: Color.fromARGB(255, 7, 2, 31))), // Button text color set to blue
+      }, // Button text color set to blue
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 194, 188, 185), // Set button color to gray
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+        backgroundColor: const Color.fromARGB(255, 194, 188, 185), // Set button color to gray
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
+      child: Text(title, style: TextStyle(color: Color.fromARGB(255, 7, 2, 31))),
     );
   }
 }
 
 // Updated Popular Topics Section with buttons
 class PopularTopicsSection extends StatelessWidget {
+  const PopularTopicsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
@@ -318,8 +421,8 @@ class PopularTopicsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Popular Topics', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          SizedBox(height: 16),
+          const Text('Popular Topics', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 16),
           Wrap(
             spacing: 10,
             runSpacing: 10,
@@ -344,7 +447,7 @@ class PopularTopicsSection extends StatelessWidget {
 class TopicButton extends StatelessWidget {
   final String title;
 
-  TopicButton({required this.title});
+  const TopicButton({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -352,23 +455,25 @@ class TopicButton extends StatelessWidget {
       onPressed: () {
         // Placeholder for navigation action
         print('$title button pressed');
-      },
-      child: Text(title, style: TextStyle(color: Color.fromARGB(255, 7, 2, 31))), // Button text color set to white
+      }, // Button text color set to white
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 194, 188, 185),  // Set button color to brown
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
+        backgroundColor: const Color.fromARGB(255, 194, 188, 185),  // Set button color to brown
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
+      child: Text(title, style: TextStyle(color: Color.fromARGB(255, 7, 2, 31))),
     );
   }
 }
 
 // Placeholder for Resource Persons Section
 class ResourcePersonSection extends StatelessWidget {
+  const ResourcePersonSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.grey[200], // Set section background color to light gray
         borderRadius: BorderRadius.circular(8),
@@ -376,30 +481,34 @@ class ResourcePersonSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center, // Centering title
         children: [
-          Text(
+          const Text(
             'Become A Resource Person',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center, // Centering the text
           ),
-          SizedBox(height: 10),
-          Text(
+          const SizedBox(height: 10),
+          const Text(
             'Join us and inspire the next generation of software engineers! Become a part of our growing community '
             'of experts dedicated to sharing knowledge and shaping future tech leaders. Let’s work together to bridge '
             'the gap between theory and practice, empowering learners to achieve their career goals. Start making an impact today!',
             textAlign: TextAlign.center, // Centering the content text
             style: TextStyle(fontSize: 14),
           ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              // Add action for becoming a resource person button
-              print('Become a Resource Person button pressed');
-            },
-            child: Text('Get Started', style: TextStyle(color: Colors.white)), // Button text color set to white
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(248, 15, 1, 48), // Set button color to brown
-            ),
-          ),
+          const SizedBox(height: 10),
+         ElevatedButton(
+  onPressed: () {
+    // Navigate to the ResRegisterPage when the button is pressed
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ResRegisterPage()),
+    );
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(248, 15, 1, 48), // Set button color
+  ),
+  child: Text('Get Started', style: TextStyle(color: Colors.white)),
+),
+
         ],
       ),
     );
@@ -410,12 +519,14 @@ class ResourcePersonSection extends StatelessWidget {
 
 // Footer (remains unchanged)
 class Footer extends StatelessWidget {
+  const Footer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
-      color: Color.fromARGB(255, 78, 4, 4),
-      child: Center(
+      padding: const EdgeInsets.all(16.0),
+      color: const Color.fromARGB(255, 78, 4, 4),
+      child: const Center(
         child: Text(
           '© 2024 Academist. All rights reserved.',
           style: TextStyle(color: Colors.white),

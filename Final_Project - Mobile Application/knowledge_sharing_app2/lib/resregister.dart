@@ -1,59 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:knowledge_sharing_app2/reslogin.dart';
 // Import the LoginPage
-import 'login.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class ResRegisterPage extends StatefulWidget {
+  const ResRegisterPage({super.key});
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _ResRegisterPageState createState() => _ResRegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  String? _selectedFileName = 'No file chosen'; // Initially, no file chosen
-  final _formKey = GlobalKey<FormState>(); // Form key for validation
+class _ResRegisterPageState extends State<ResRegisterPage> {
+  String? _selectedFileName = 'No file chosen';
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
-  bool _isPasswordVisible = false; // Password visibility state
-  bool _isConfirmPasswordVisible = false; // Confirm password visibility state
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
-  // Method to handle file picking
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
       PlatformFile file = result.files.first;
-
       setState(() {
-        _selectedFileName = file.name; // Update file name after selection
+        _selectedFileName = file.name;
       });
     } else {
-      // User canceled the picker
       setState(() {
         _selectedFileName = 'No file chosen';
       });
     }
   }
 
-  // Method to validate the form and proceed with registration
   void _register() {
     if (_formKey.currentState!.validate()) {
-      // Perform registration actions here (e.g., API call)
-
-      // Show a success message or navigate to another page
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Registration successful!')),
       );
-
-       // Navigate to the Login Page
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-    );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ResLoginPage()),
+      );
     }
   }
 
@@ -62,14 +53,14 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Student Register',
-          style: TextStyle(color: Colors.white), // Set text color to white
+          'Resource People Register',
+          style: TextStyle(color: Colors.white),
         ),
-        iconTheme: const IconThemeData(color: Colors.white), // Set back button arrow color to white
-        backgroundColor: const Color.fromARGB(255, 38, 27, 102), // Brown app bar
+        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 38, 27, 102),
       ),
       body: Container(
-        color: Colors.grey[300], // Light gray background
+        color: Colors.grey[300],
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: SingleChildScrollView(
@@ -80,19 +71,17 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               child: Container(
                 padding: const EdgeInsets.all(20),
-                color: Colors.brown[50], // Light brown background for card
+                color: Colors.brown[50],
                 child: Form(
-                  key: _formKey, // Assign the form key here
+                  key: _formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Text(
-                        'Create Your Account', // Updated title
+                        'Create Your Resource People Account',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color.fromARGB(197, 0, 0, 0)),
                       ),
-                      
                       const SizedBox(height: 20),
-                      // Row for name and password fields
                       Row(
                         children: [
                           Expanded(
@@ -113,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your name';
                                 }
-                                return null; // Valid input
+                                return null;
                               },
                             ),
                           ),
@@ -140,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      _isPasswordVisible = !_isPasswordVisible; // Toggle visibility
+                                      _isPasswordVisible = !_isPasswordVisible;
                                     });
                                   },
                                 ),
@@ -150,14 +139,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
                                 }
-                                return null; // Valid input
+                                return null;
                               },
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 20),
-                      // Row for email and confirm password fields
                       Row(
                         children: [
                           Expanded(
@@ -178,13 +166,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
                                 }
-                                // Simple email validation
                                 String pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
                                 RegExp regex = RegExp(pattern);
                                 if (!regex.hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
-                                return null; // Valid input
+                                return null;
                               },
                             ),
                           ),
@@ -211,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible; // Toggle visibility
+                                      _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
                                     });
                                   },
                                 ),
@@ -224,14 +211,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 if (value != _passwordController.text) {
                                   return 'Passwords do not match';
                                 }
-                                return null; // Valid input
+                                return null;
                               },
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 20),
-                      // Select Image field (Updated to browse file)
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Column(
@@ -243,7 +229,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 10),
                             GestureDetector(
-                              onTap: _pickFile, // Trigger file picker when tapped
+                              onTap: _pickFile,
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -252,9 +238,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                                 child: Row(
                                   children: [
-                                    // The "Choose File" button
                                     Container(
-                                      color: const Color.fromARGB(47, 190, 29, 29), // Light gray background for button
+                                      color: const Color.fromARGB(47, 190, 29, 29),
                                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                                       child: const Text(
                                         'Choose File',
@@ -262,11 +247,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                       ),
                                     ),
                                     const SizedBox(width: 10),
-                                    // Display the chosen file name
                                     Expanded(
                                       child: Text(
                                         _selectedFileName!,
-                                        style: const TextStyle(color: Colors.black), // Black text for file name
+                                        style: const TextStyle(color: Colors.black),
                                       ),
                                     ),
                                   ],
@@ -277,16 +261,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      // Register button
                       ElevatedButton(
                         onPressed: _register,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 0, 0, 0), 
-                          foregroundColor: Colors.white, // White text for button
-                        ), // Call register method
+                          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                          foregroundColor: Colors.white,
+                        ),
                         child: Text(
                           'Register Now',
-                          style: TextStyle(color: Colors.white), // Set button text color to white
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -294,12 +277,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
+                            MaterialPageRoute(builder: (context) => ResLoginPage()),
                           );
                         },
                         child: const Text(
                           'Already have an account? Login here',
-                         style: TextStyle(color: Color.fromARGB(255, 2, 1, 10), fontWeight: FontWeight.bold), // Changed to bold
+                          style: TextStyle(color: Color.fromARGB(255, 2, 1, 10), fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
