@@ -25,7 +25,7 @@ if(isset($_COOKIE['user_id'])){
 
 <?php include 'components/user_header.php'; ?>
 
-<!-- about section -->
+<!-- about section starts  -->
 
 <section class="about">
 
@@ -46,15 +46,7 @@ if(isset($_COOKIE['user_id'])){
    <div class="box-container">
 
       <div class="box">
-         <i class="fas fa-graduation-cap"></i>
-         <div>
-            <h3>+1k</h3>
-            <span>Online Courses</span>
-         </div>
-      </div>
-
-      <div class="box">
-         <i class="fas fa-user-graduate"></i>
+        <i class="fas fa-user-graduate"></i>
          <div>
             <h3>+25k</h3>
             <span>Brilliants Students</span>
@@ -76,7 +68,6 @@ if(isset($_COOKIE['user_id'])){
             <span>Satisfication</span>
          </div>
       </div>
-
    </div>
 
 </section>

@@ -1,5 +1,3 @@
 <footer class="footer">
-
-   privacy policy | all rights reserved!
-
+        Copyright © 2024. All rights reserved.
 </footer>

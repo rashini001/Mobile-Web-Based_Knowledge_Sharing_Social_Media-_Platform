@@ -82,7 +82,7 @@ if(isset($_POST['submit'])){
       <div class="box">
          <i class="fas fa-envelope"></i>
          <h3>email address</h3>
-        <h3>email address</h3>
+   
          <a href="rashini@gmail.com">rashini@gmail.com</a>
          <a href="imangana@gmail.com">imangana@gmail.com</a>
       </div>

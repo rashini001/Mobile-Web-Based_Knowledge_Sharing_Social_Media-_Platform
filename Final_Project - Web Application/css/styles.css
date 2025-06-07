@@ -456,6 +456,83 @@ nav {
   font-weight: 600;
   font-family: var(--header-font);
 }
+.mobile-app__container {
+  text-align: center;
+  padding: 50px 20px;
+  background: rgb(7, 0, 0); /* White background for the section */
+}
+
+.mobile-app__header {
+  margin-bottom: 30px;
+}
+
+.mobile-app__header .section__header,
+.mobile-app__header .section__subheader {
+  color: white; /* White font for text */
+}
+
+.mobile-app__grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.mobile-app__card {
+  flex: 1;
+  max-width: 300px;
+  text-align: center;
+  background: #333; /* Dark background for cards to contrast white text */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s;
+  color: white; /* White text inside cards */
+}
+
+.mobile-app__card:hover {
+  transform: scale(1.05);
+}
+
+.mobile-app__card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.mobile-app__card h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.mobile-app__card p {
+  font-size: 1em;
+}
+
+.mobile-app__cta {
+  margin-top: 30px;
+}
+
+.mobile-app__cta .btn {
+  margin: 0 10px;
+  background: #333; /* Dark button background to match the theme */
+  color: white; /* White text for buttons */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+.mobile-app__cta .btn:hover {
+  background: #555; /* Slightly lighter dark on hover */
+}
+
+.mobile-app__cta a {
+  text-decoration: none;
+  color: white; /* Ensure text remains white on buttons */
+}
 
 .footer__container {
   text-align: center;

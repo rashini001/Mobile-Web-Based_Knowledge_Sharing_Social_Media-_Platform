@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
       }else{
          // Log the failed attempt
          logFailedAttempt($conn, $email);
-         $attemptsLeft = 5 - getFailedAttempts($conn, $email);
+         $attemptsLeft = 3 - getFailedAttempts($conn, $email);
 
          if ($attemptsLeft > 0) {
             $message[] = 'Incorrect email or password! You have ' . $attemptsLeft . ' more attempt(s) before your account is temporarily locked.';

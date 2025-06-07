@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 include 'components/connect.php';
 
 if(isset($_COOKIE['user_id'])){
@@ -25,14 +24,9 @@ if(isset($_COOKIE['user_id'])){
 
 <?php include 'components/user_header.php'; ?>
 
-<!-- courses section starts  -->
-
 <section class="courses">
-
    <h1 class="heading">All Courses</h1>
-
    <div class="box-container">
-
       <?php
          $select_courses = $conn->prepare("SELECT * FROM `playlist` WHERE status = ? ORDER BY date DESC");
          $select_courses->execute(['active']);
@@ -43,6 +37,11 @@ if(isset($_COOKIE['user_id'])){
                $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE id = ?");
                $select_tutor->execute([$fetch_course['tutor_id']]);
                $fetch_tutor = $select_tutor->fetch(PDO::FETCH_ASSOC);
+
+               // Check enrollment
+               $check_enrollment = $conn->prepare("SELECT * FROM `enrollments` WHERE user_id = ? AND playlist_id = ? AND status = 'approved'");
+               $check_enrollment->execute([$user_id, $course_id]);
+               $is_enrolled = $check_enrollment->rowCount() > 0;
       ?>
       <div class="box">
          <div class="tutor">
@@ -55,24 +54,25 @@ if(isset($_COOKIE['user_id'])){
          <img src="uploaded_files/<?= $fetch_course['thumb']; ?>" class="thumb" alt="">
          <h3 class="title"><?= $fetch_course['title']; ?></h3>
          <div class="flex-btn">
-         <a href="playlist.php?get_id=<?= $course_id; ?>" class="inline-btn">view playlist</a>
-         <a href="view_assignment.php?get_id=<?= $course_id; ?>" class="inline-btn">view assignments</a></div>
+            
+            <?php if ($is_enrolled): ?>
+               <a href="playlist.php?get_id=<?= $course_id; ?>" class="inline-btn">View Playlist</a>
+               <a href="view_assignment.php?get_id=<?= $course_id; ?>" class="inline-btn">View Assignments</a>
+            <?php else: ?>
+               <a href="request_enrollment.php?get_id=<?= $course_id; ?>" class="inline-btn">Request Enrollment</a>
+            <?php endif; ?>
+         </div>
       </div>
       <?php
+            }
+         } else {
+            echo '<p class="empty">No courses added yet!</p>';
          }
-      }else{
-         echo '<p class="empty">no courses added yet!</p>';
-      }
       ?>
-
    </div>
-
 </section>
 
-
 <?php include 'components/footer.php'; ?>
-
 <script src="js/script.js"></script>
-   
 </body>
 </html>

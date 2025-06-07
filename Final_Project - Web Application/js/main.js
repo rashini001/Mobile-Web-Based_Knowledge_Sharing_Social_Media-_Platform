@@ -57,3 +57,18 @@ ScrollReveal().reveal(".journals__card", {
   ...scrollRevealOption,
   interval: 400,
 });
+let currentSlide = 0;
+
+function changeSlide(direction) {
+  const items = document.querySelectorAll('.carousel__item');
+  items[currentSlide].classList.remove('active');
+
+  currentSlide = (currentSlide + direction + items.length) % items.length;
+
+  items[currentSlide].classList.add('active');
+}
+
+// Initialize first slide as active
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.carousel__item')[0].classList.add('active');
+});

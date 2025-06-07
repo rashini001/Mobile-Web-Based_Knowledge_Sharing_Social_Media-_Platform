@@ -18,6 +18,95 @@ if(isset($_GET['get_id'])){
    exit();
 }
 
+if(isset($_POST['update'])){
+
+   $video_id = filter_var($_POST['video_id'], FILTER_SANITIZE_STRING);
+   $status = filter_var($_POST['status'], FILTER_SANITIZE_STRING);
+   $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
+   $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+   $playlist = filter_var($_POST['playlist'], FILTER_SANITIZE_STRING);
+
+   $update_content = $conn->prepare("UPDATE `content` SET title = ?, description = ?, status = ? WHERE id = ?");
+   $update_content->execute([$title, $description, $status, $video_id]);
+
+   if(!empty($playlist)){
+      $update_playlist = $conn->prepare("UPDATE `content` SET playlist_id = ? WHERE id = ?");
+      $update_playlist->execute([$playlist, $video_id]);
+   }
+
+   $old_thumb = filter_var($_POST['old_thumb'], FILTER_SANITIZE_STRING);
+   $thumb = $_FILES['thumb']['name'];
+   $thumb = filter_var($thumb, FILTER_SANITIZE_STRING);
+   $thumb_size = $_FILES['thumb']['size'];
+   $thumb_tmp_name = $_FILES['thumb']['tmp_name'];
+   $thumb_folder = '../uploaded_files/'.unique_id().'.'.pathinfo($thumb, PATHINFO_EXTENSION);
+
+   if(!empty($thumb)){
+      if($thumb_size > 2000000){
+         $message[] = 'Image size is too large!';
+      }else{
+         move_uploaded_file($thumb_tmp_name, $thumb_folder);
+         $update_thumb = $conn->prepare("UPDATE `content` SET thumb = ? WHERE id = ?");
+         $update_thumb->execute([$thumb_folder, $video_id]);
+         if($old_thumb != '' && file_exists('../uploaded_files/'.$old_thumb)){
+            unlink('../uploaded_files/'.$old_thumb);
+         }
+      }
+   }
+
+   $old_video = filter_var($_POST['old_video'], FILTER_SANITIZE_STRING);
+   $video = $_FILES['video']['name'];
+   $video = filter_var($video, FILTER_SANITIZE_STRING);
+   $video_size = $_FILES['video']['size'];
+   $video_tmp_name = $_FILES['video']['tmp_name'];
+   $video_folder = '../uploaded_files/'.unique_id().'.'.pathinfo($video, PATHINFO_EXTENSION);
+
+   if(!empty($video)){
+      if($video_size > 50000000){ // Limit to 50MB
+         $message[] = 'Video size is too large!';
+      }else{
+         move_uploaded_file($video_tmp_name, $video_folder);
+         $update_video = $conn->prepare("UPDATE `content` SET video = ? WHERE id = ?");
+         $update_video->execute([$video_folder, $video_id]);
+         if($old_video != '' && file_exists('../uploaded_files/'.$old_video)){
+            unlink('../uploaded_files/'.$old_video);
+         }
+      }
+   }
+
+   $message[] = 'Content updated!';
+}
+
+if(isset($_POST['delete_video'])){
+
+   $delete_id = filter_var($_POST['video_id'], FILTER_SANITIZE_STRING);
+
+   $delete_video_thumb = $conn->prepare("SELECT thumb FROM `content` WHERE id = ? LIMIT 1");
+   $delete_video_thumb->execute([$delete_id]);
+   $fetch_thumb = $delete_video_thumb->fetch(PDO::FETCH_ASSOC);
+   if($fetch_thumb && file_exists('../uploaded_files/'.$fetch_thumb['thumb'])){
+      unlink('../uploaded_files/'.$fetch_thumb['thumb']);
+   }
+
+   $delete_video = $conn->prepare("SELECT video FROM `content` WHERE id = ? LIMIT 1");
+   $delete_video->execute([$delete_id]);
+   $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
+   if($fetch_video && file_exists('../uploaded_files/'.$fetch_video['video'])){
+      unlink('../uploaded_files/'.$fetch_video['video']);
+   }
+
+   $delete_likes = $conn->prepare("DELETE FROM `likes` WHERE content_id = ?");
+   $delete_likes->execute([$delete_id]);
+
+   $delete_comments = $conn->prepare("DELETE FROM `comments` WHERE content_id = ?");
+   $delete_comments->execute([$delete_id]);
+
+   $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
+   $delete_content->execute([$delete_id]);
+   header('location:contents.php');
+   exit();
+}
+
 ?>
 
 <!DOCTYPE html>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background: url('static/assets/bgrecommend.jpg') no-repeat center center fixed;
+            background: url('../static/assets/bgrecommend.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -50,12 +50,10 @@
     </script>
 </head>
 <body>
-<div class="mynav shadow-sm">
-    <h1 class="text-center">Education Recommendation System</h1>
-</div>
+
 <div class="container">
     <h2 class="text-center">Fill in the details to get recommendations</h2>
-    <form method="post" action="/pred">
+    <form action="{{ url_for('pred') }}" method="POST">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -102,7 +100,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="math_score">Math Score:</label>
+                    <label for="math_score">PDSA Score:</label>
                     <input type="number" class="form-control" id="math_score" name="math_score" onchange="calculateScores()">
                 </div>
             </div>
@@ -110,13 +108,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="history_score">History Score:</label>
+                    <label for="history_score">EAD Score:</label>
                     <input type="number" class="form-control" id="history_score" name="history_score" onchange="calculateScores()">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="physics_score">Physics Score:</label>
+                    <label for="physics_score">OOP Score:</label>
                     <input type="number" class="form-control" id="physics_score" name="physics_score" onchange="calculateScores()">
                 </div>
             </div>
@@ -124,13 +122,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="chemistry_score">Chemistry Score:</label>
+                    <label for="chemistry_score">SE Score:</label>
                     <input type="number" class="form-control" id="chemistry_score" name="chemistry_score" onchange="calculateScores()">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="biology_score">Biology Score:</label>
+                    <label for="biology_score">DW Score:</label>
                     <input type="number" class="form-control" id="biology_score" name="biology_score" onchange="calculateScores()">
                 </div>
             </div>
@@ -138,13 +136,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="english_score">English Score:</label>
+                    <label for="english_score">IOT Score:</label>
                     <input type="number" class="form-control" id="english_score" name="english_score" onchange="calculateScores()">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="geography_score">Geography Score:</label>
+                    <label for="geography_score">ROBOTICS Score:</label>
                     <input type="number" class="form-control" id="geography_score" name="geography_score" onchange="calculateScores()">
                 </div>
             </div>

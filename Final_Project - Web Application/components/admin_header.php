@@ -15,7 +15,7 @@ if(isset($message)){
 
    <section class="flex">
 
-      <a href="dashboard.php" class="logo">Admin.</a>
+      <a href="dashboard.php" class="logo">Resource Person.</a>
 
       <form action="search_page.php" method="post" class="search-form">
          <input type="text" name="search" placeholder="search here..." required maxlength="100">
@@ -62,6 +62,7 @@ if(isset($message)){
 
 </header>
 
+<!-- header section ends -->
 
 <!-- side bar section starts  -->
 
@@ -99,8 +100,11 @@ if(isset($message)){
       <a href="dashboard.php"><i class="fas fa-home"></i><span>home</span></a>
       <a href="playlists.php"><i class="fa-solid fa-bars-staggered"></i><span>playlists</span></a>
       <a href="contents.php"><i class="fas fa-graduation-cap"></i><span>contents</span></a>
-      <a href="comments.php"><i class="fas fa-comment"></i><span>assignments</span></a>
+      <a href="assignment.php"><i class="fas fa-laptop-code"></i><span>assignmets</span></a>
+      <a href="view_submission.php"><i class="fas fa-book-reader"></i><span>submissions</span></a>
       <a href="../components/admin_logout.php" onclick="return confirm('logout from this website?');"><i class="fas fa-right-from-bracket"></i><span>logout</span></a>
    </nav>
 
 </div>
+
+<!-- side bar section ends -->

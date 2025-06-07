@@ -8,6 +8,35 @@ if(isset($_COOKIE['user_id'])){
    $user_id = '';
 }
 
+if(isset($_POST['tutor_fetch'])){
+
+   $tutor_email = $_POST['tutor_email'];
+   $tutor_email = filter_var($tutor_email, FILTER_SANITIZE_STRING);
+   $select_tutor = $conn->prepare('SELECT * FROM `tutors` WHERE email = ?');
+   $select_tutor->execute([$tutor_email]);
+
+   $fetch_tutor = $select_tutor->fetch(PDO::FETCH_ASSOC);
+   $tutor_id = $fetch_tutor['id'];
+
+   $count_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
+   $count_playlists->execute([$tutor_id]);
+   $total_playlists = $count_playlists->rowCount();
+
+   $count_contents = $conn->prepare("SELECT * FROM `content` WHERE tutor_id = ?");
+   $count_contents->execute([$tutor_id]);
+   $total_contents = $count_contents->rowCount();
+
+   $count_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
+   $count_likes->execute([$tutor_id]);
+   $total_likes = $count_likes->rowCount();
+
+   $count_comments = $conn->prepare("SELECT * FROM `comment` WHERE tutor_id = ?");
+   $count_comments->execute([$tutor_id]);
+   $total_comments = $count_comments->rowCount();
+
+}else{
+   header('location:teachers.php');
+}
 
 ?>
 
@@ -20,8 +49,10 @@ if(isset($_COOKIE['user_id'])){
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>tutor's profile</title>
 
-  
+   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>

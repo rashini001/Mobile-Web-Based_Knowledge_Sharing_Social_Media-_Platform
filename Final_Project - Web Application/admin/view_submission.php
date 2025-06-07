@@ -51,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submission_id']) && i
    <!-- custom css file link -->
    <link rel="stylesheet" href="../css/admin_style.css">
    <style>
-       
        form.flex-btn label {
            color: black;
            font-weight: bold;
@@ -75,9 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submission_id']) && i
 <!-- Display Messages -->
 <?php if (!empty($message)) : ?>
     <div class="message">
-        <?php foreach ($message as $item) : ?>
-            <p><?= htmlspecialchars($item); ?></p>
-        <?php endforeach; ?>
+        <?php if (is_array($message)) : ?>
+            <?php foreach ($message as $item) : ?>
+                <p><?= htmlspecialchars($item); ?></p>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <p class="error">An unexpected error occurred with messages.</p>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
 
@@ -124,9 +127,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submission_id']) && i
                         <?php endif; ?>
                         <form action="" method="POST" class="flex-btn">
                             <div>
-                            <input type="hidden" name="submission_id" value="<?= htmlspecialchars($submission_id); ?>">
-                            <label for="grade_<?= htmlspecialchars($submission_id); ?>">Grade:</label>
-                            <input type="text" name="grade" id="grade_<?= htmlspecialchars($submission_id); ?>" value="<?= htmlspecialchars($submission_grade ?? ''); ?>" placeholder="Enter Grade (0-100)" required>
+                                <input type="hidden" name="submission_id" value="<?= htmlspecialchars($submission_id); ?>">
+                                <label for="grade_<?= htmlspecialchars($submission_id); ?>">Grade:</label>
+                                <input type="text" name="grade" id="grade_<?= htmlspecialchars($submission_id); ?>" value="<?= htmlspecialchars($submission_grade ?? ''); ?>" placeholder="Enter Grade (0-100)" required>
                             </div>
                             <button type="submit" class="delete-btn">Submit Grade</button>
                         </form>

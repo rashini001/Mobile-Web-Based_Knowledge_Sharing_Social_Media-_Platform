@@ -1,0 +1,117 @@
+/* Success Page Styles */
+.success-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 80vh;
+   padding: 2rem;
+}
+
+.success-box {
+   background: var(--white);
+   border-radius: 10px;
+   box-shadow: var(--box-shadow);
+   padding: 3rem;
+   text-align: center;
+   max-width: 600px;
+   width: 100%;
+}
+
+.checkmark-circle {
+   width: 80px;
+   height: 80px;
+   border-radius: 50%;
+   background: #28a745;
+   margin: 0 auto 2rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.checkmark {
+   width: 40px;
+   height: 20px;
+   border-left: 4px solid white;
+   border-bottom: 4px solid white;
+   transform: rotate(-45deg);
+}
+
+.success-box h2 {
+   color: #28a745;
+   margin-bottom: 1.5rem;
+   font-size: 2rem;
+}
+
+.success-box p {
+   color: var(--light-color);
+   margin-bottom: 1.5rem;
+   line-height: 1.6;
+   font-size: 1.6rem;
+}
+
+.admin-message {
+   background: var(--light-bg);
+   border-left: 4px solid var(--main-color);
+   padding: 1.5rem;
+   margin: 2rem 0;
+   text-align: left;
+   border-radius: .5rem;
+}
+
+.admin-message h3 {
+   color: var(--main-color);
+   margin-bottom: 1rem;
+   font-size: 1.8rem;
+}
+
+.admin-message ul {
+   padding-left: 1.5rem;
+   margin: 1rem 0;
+}
+
+.admin-message li {
+   margin-bottom: 0.5rem;
+   color: var(--light-color);
+   font-size: 1.5rem;
+}
+
+.btn {
+   display: inline-block;
+   padding: 1rem 2.5rem;
+   background: var(--main-color);
+   color: white;
+   border-radius: .5rem;
+   text-decoration: none;
+   transition: all 0.3s ease;
+   font-size: 1.6rem;
+   margin-top: 1rem;
+}
+
+.btn:hover {
+   background: var(--black);
+   transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+   .success-box {
+      padding: 2rem;
+   }
+   
+   .success-box h2 {
+      font-size: 2rem;
+   }
+   
+   .success-box p {
+      font-size: 1.4rem;
+   }
+   
+   .admin-message h3 {
+      font-size: 1.6rem;
+   }
+   
+   .admin-message li {
+      font-size: 1.4rem;
+   }
+}
+

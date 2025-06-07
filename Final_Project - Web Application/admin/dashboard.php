@@ -7,6 +7,7 @@ if (isset($_COOKIE['tutor_id'])) {
 } else {
     $tutor_id = '';
     header('location:login.php');
+    exit();
 }
 
 // Fetch tutor profile
@@ -16,32 +17,46 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
 
 if (!$fetch_profile) {
     header('location:login.php'); // Redirect if no profile found
+    exit();
 }
 
-$select_contents = $conn->prepare("SELECT * FROM `content` WHERE tutor_id = ?");
+// Fetch counts for dashboard
+$select_contents = $conn->prepare("SELECT COUNT(*) FROM `content` WHERE tutor_id = ?");
 $select_contents->execute([$tutor_id]);
-$total_contents = $select_contents->rowCount();
+$total_contents = $select_contents->fetchColumn();
 
-$select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
-$select_playlists->execute([$tutor_id]);
-$total_playlists = $select_playlists->rowCount();
-
-$select_likes = $conn->prepare("SELECT * FROM `enrollments` WHERE playlist_id IN (SELECT id FROM `playlist` WHERE tutor_id = ?)");
-$select_likes->execute([$tutor_id]);
-$total_likes = $select_likes->rowCount();
-
-$select_comments = $conn->prepare("SELECT * FROM `assignments` WHERE tutor_id = ?");
+$select_comments = $conn->prepare("SELECT COUNT(*) FROM `comment` WHERE tutor_id = ?");
 $select_comments->execute([$tutor_id]);
-$total_comments = $select_comments->rowCount();
+$total_comments = $select_comments->fetchColumn();
 
-// Count pending requests
+$select_playlists = $conn->prepare("SELECT COUNT(*) FROM `playlist` WHERE tutor_id = ?");
+$select_playlists->execute([$tutor_id]);
+$total_playlists = $select_playlists->fetchColumn();
+
+$select_likes = $conn->prepare("
+    SELECT COUNT(*) 
+    FROM `enrollments` 
+    WHERE playlist_id IN (SELECT id FROM `playlist` WHERE tutor_id = ?)
+");
+$select_likes->execute([$tutor_id]);
+$total_likes = $select_likes->fetchColumn();
+
 $select_pending_requests = $conn->prepare("
-    SELECT COUNT(*) AS pending_requests 
+    SELECT COUNT(*) 
+    AS pending_requests 
     FROM `enrollments` 
     WHERE status = 'pending' AND playlist_id IN (SELECT id FROM `playlist` WHERE tutor_id = ?)
 ");
 $select_pending_requests->execute([$tutor_id]);
-$pending_requests = $select_pending_requests->fetch(PDO::FETCH_ASSOC)['pending_requests'];
+$pending_requests = $select_pending_requests->fetchColumn();
+
+$select_submissions = $conn->prepare("
+    SELECT COUNT(*) 
+    FROM `submissions` 
+    WHERE assignment_id IN (SELECT id FROM `assignments` WHERE tutor_id = ?)
+");
+$select_submissions->execute([$tutor_id]);
+$total_submissions = $select_submissions->fetchColumn();
 
 ?>
 
@@ -85,7 +100,7 @@ $pending_requests = $select_pending_requests->fetch(PDO::FETCH_ASSOC)['pending_r
       </div>
 
       <div class="box">
-         <h3><?= $total_likes; ?></h3>
+         <h3><?= $total_submissions; ?></h3>
          <p>Total Submissions</p>
          <a href="view_submission.php" class="btn">View Submissions</a>
       </div>
@@ -94,6 +109,11 @@ $pending_requests = $select_pending_requests->fetch(PDO::FETCH_ASSOC)['pending_r
          <h3><?= $pending_requests; ?></h3>
          <p>Pending Requests</p>
          <a href="manage_requests.php" class="btn">View Requests</a>
+      </div>
+      <div class="box">
+         <h3><?= $total_comments; ?></h3>
+         <p>Total Comments</p>
+         <a href="comments.php" class="btn">View Comments</a>
       </div>
 
       <div class="box">

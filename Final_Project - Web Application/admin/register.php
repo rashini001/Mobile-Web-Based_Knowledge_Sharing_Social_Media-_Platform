@@ -73,7 +73,7 @@ if(isset($_POST['submit'])){
             $insert_tutor = $conn->prepare("INSERT INTO `tutors`(id, name, profession, email, password, image) VALUES(?,?,?,?,?,?)");
             $insert_tutor->execute([$id, $name, $profession, $email, $cpass, $rename]);
             move_uploaded_file($image_tmp_name, $image_folder);
-            $message[] = 'New tutor registered! Please login now';
+            $message[] = 'New Resourse Person Registered! Please login now';
          }
       }
    }

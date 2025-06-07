@@ -9,11 +9,11 @@ if(isset($_COOKIE['user_id']) && isset($_COOKIE['user_name'])){
    $user_name = '';
 }
 
-$select_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ?");
+$select_likes = $conn->prepare("SELECT * FROM `enrollments` WHERE user_id = ?");
 $select_likes->execute([$user_id]);
 $total_likes = $select_likes->rowCount();
 
-$select_comments = $conn->prepare("SELECT * FROM `comment` WHERE user_id = ?");
+$select_comments = $conn->prepare("SELECT * FROM `submissions` WHERE user_id = ?");
 $select_comments->execute([$user_id]);
 $total_comments = $select_comments->rowCount();
 
@@ -86,8 +86,13 @@ $total_bookmarked = $select_bookmark->rowCount();
          if($user_id != '' && $user_name != ''){  // Ensure both cookies are set
       ?>
       <div class="box">
-         <h3 class="title"><i class="fa-solid fa-smile-beam"></i> Welcome, <?= htmlspecialchars($user_name); ?>!</h3>  
-         <p>Your learning journey continues here! Dive into your content and make today count.</p>
+         <h3 class="title">Welcome, <?= htmlspecialchars($user_name); ?>!</h3>  
+         <p>Enrolled Courses: <span><?= $total_likes; ?></span></p>
+         <a href="courses.php" class="inline-btn">View Courses</a>
+         <p>Total Assignmnets: <span><?= $total_comments; ?></span></p>
+         <a href="view_assignment.php" class="inline-btn">View Assignments</a>
+         <p>Saved playlist: <span><?= $total_bookmarked; ?></span></p>
+         <a href="bookmark.php" class="inline-btn">View videos</a>
       </div>
       <?php
          } else { 

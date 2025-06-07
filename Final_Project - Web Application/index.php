@@ -22,7 +22,7 @@
             <li class="link"><a href="#discover">Discover</a></li>
             <li class="link"><a href="#journals">Career</a></li>
             <li class="link"><a href="#contact">Contact Us</a></li>
-             <li class="link"><a href="home.php">Join Us</a></li>
+             <li class="link"><a href="register.php">Join Us</a></li>
             <li class="link search">
               <span><i class="ri-search-line"></i></span>
             </li>
@@ -178,7 +178,7 @@
           
         </div>
         <div class="journals__btn">
-          <button class="btn"><a href="predictions.php"><font color="white">
+          <button class="btn"><a href="prediction/templates/home.html"><font color="white">
             Predict Carrer Path <i class="ri-arrow-right-line"></i>
           </button>
         </div>
@@ -208,6 +208,47 @@
         </div>
       </div>
     </section>
+
+    <section class="mobile-app" id="mobile-app">
+  <div class="section__container mobile-app__container">
+    <div class="mobile-app__header">
+      <h2 class="section__header">Explore the Academist Mobile App</h2>
+      <p class="section__subheader">Learn, collaborate, and grow—anytime, anywhere.</p>
+    </div>
+    <div class="mobile-app__grid">
+      <div class="mobile-app__card">
+        <h3 >Teamup Seamlessly</h3>
+        <p>
+        Connect with students and experts instantly to share ideas, tackle challenges, and achieve goals together.
+        </p>
+      </div>
+      <div class="mobile-app__card">
+        <h3>Interactive Quizzes</h3>
+        <p>
+          Engage with fun quizzes and track your progress through gamified learning tailored to your needs.                                
+          
+
+        </p>
+      </div>
+      <div class="mobile-app__card">
+        <h3>Course Insights</h3>
+        <p>
+          Stay on top of your learning with detailed progress tracking, personalized recommendations, and course updates.
+        </p>
+      </div>
+    </div>
+    <div class="mobile-app__cta">
+      <button class="btn">
+        <a href="#"><i class="ri-android-line"></i> Download for Android</a>
+      </button>
+      <button class="btn">
+        <a href="#"><i class="ri-apple-line"></i> Download for iOS</a>
+      </button>
+    </div>
+  </div>
+</section>
+
+
 
     <section class="footer">
       <div class="section__container footer__container">

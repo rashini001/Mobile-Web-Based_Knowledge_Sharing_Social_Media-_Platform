@@ -127,17 +127,16 @@ if(isset($_POST['submit'])){
             <p>your profession </p>
             <select name="profession" class="box">
                <option value="" selected><?= $fetch_profile['profession']; ?></option>
-               <option value="developer">developer</option>
-               <option value="desginer">desginer</option>
-               <option value="musician">musician</option>
-               <option value="biologist">biologist</option>
-               <option value="teacher">teacher</option>
-               <option value="engineer">engineer</option>
-               <option value="lawyer">lawyer</option>
-               <option value="accountant">accountant</option>
-               <option value="doctor">doctor</option>
-               <option value="journalist">journalist</option>
-               <option value="photographer">photographer</option>
+               <option value="developer">mobile developer</option>
+               <option value="desginer">ui/ux desginer</option>
+               <option value="web">web developer</option>
+               <option value="front-end">front-end developer</option>
+               <option value="back-end">back-end developer</option>
+               <option value="engineer">software engineer</option>
+               <option value="network">network engineer</option>
+               <option value="qa">qa engineer</option>
+               <option value="cloud">cloud engineer</option>
+               <option value="ba">business analysis</option>
             </select>
             <p>your email </p>
             <input type="email" name="email" placeholder="<?= $fetch_profile['email']; ?>" maxlength="20"  class="box">

@@ -16,7 +16,49 @@ if(isset($_GET['get_id'])){
    header('location:contents.php');
 }
 
+if(isset($_POST['delete_video'])){
 
+   $delete_id = $_POST['video_id'];
+   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+   $delete_video_thumb = $conn->prepare("SELECT thumb FROM `content` WHERE id = ? LIMIT 1");
+   $delete_video_thumb->execute([$delete_id]);
+   $fetch_thumb = $delete_video_thumb->fetch(PDO::FETCH_ASSOC);
+   unlink('../uploaded_files/'.$fetch_thumb['thumb']);
+
+   $delete_video = $conn->prepare("SELECT video FROM `content` WHERE id = ? LIMIT 1");
+   $delete_video->execute([$delete_id]);
+   $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
+   unlink('../uploaded_files/'.$fetch_video['video']);
+
+   $delete_likes = $conn->prepare("DELETE FROM `likes` WHERE content_id = ?");
+   $delete_likes->execute([$delete_id]);
+   $delete_comments = $conn->prepare("DELETE FROM `comment` WHERE content_id = ?");
+   $delete_comments->execute([$delete_id]);
+
+   $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
+   $delete_content->execute([$delete_id]);
+   header('location:contents.php');
+    
+}
+
+if(isset($_POST['delete_comment'])){
+
+   $delete_id = $_POST['comment_id'];
+   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+   $verify_comment = $conn->prepare("SELECT * FROM `comment` WHERE id = ?");
+   $verify_comment->execute([$delete_id]);
+
+   if($verify_comment->rowCount() > 0){
+      $delete_comment = $conn->prepare("DELETE FROM `comment` WHERE id = ?");
+      $delete_comment->execute([$delete_id]);
+      $message[] = 'comment deleted successfully!';
+   }else{
+      $message[] = 'comment already deleted!';
+   }
+
+}
 
 ?>
 
@@ -27,7 +69,11 @@ if(isset($_GET['get_id'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>view content</title>
+
+   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
@@ -49,7 +95,7 @@ if(isset($_GET['get_id'])){
             $count_likes->execute([$tutor_id, $video_id]);
             $total_likes = $count_likes->rowCount();
 
-            $count_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ? AND content_id = ?");
+            $count_comments = $conn->prepare("SELECT * FROM `comment` WHERE tutor_id = ? AND content_id = ?");
             $count_comments->execute([$tutor_id, $video_id]);
             $total_comments = $count_comments->rowCount();
    ?>
@@ -87,7 +133,7 @@ if(isset($_GET['get_id'])){
    
    <div class="show-comments">
       <?php
-         $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE content_id = ?");
+         $select_comments = $conn->prepare("SELECT * FROM `comment` WHERE content_id = ?");
          $select_comments->execute([$get_id]);
          if($select_comments->rowCount() > 0){
             while($fetch_comment = $select_comments->fetch(PDO::FETCH_ASSOC)){   

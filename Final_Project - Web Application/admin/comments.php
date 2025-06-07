@@ -9,6 +9,23 @@ if(isset($_COOKIE['tutor_id'])){
    header('location:login.php');
 }
 
+if(isset($_POST['delete_comment'])){
+
+   $delete_id = $_POST['comment_id'];
+   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+
+   $verify_comment = $conn->prepare("SELECT * FROM `comment` WHERE id = ?");
+   $verify_comment->execute([$delete_id]);
+
+   if($verify_comment->rowCount() > 0){
+      $delete_comment = $conn->prepare("DELETE FROM `comment` WHERE id = ?");
+      $delete_comment->execute([$delete_id]);
+      $message[] = 'comment deleted successfully!';
+   }else{
+      $message[] = 'comment already deleted!';
+   }
+
+}
 
 ?>
 
@@ -19,7 +36,11 @@ if(isset($_COOKIE['tutor_id'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Dashboard</title>
+
+   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
@@ -30,7 +51,7 @@ if(isset($_COOKIE['tutor_id'])){
 
 <section class="comments">
 
-   <h1 class="heading">Assignments</h1>
+   <h1 class="heading">user comments</h1>
 
    
    <div class="show-comments">
@@ -54,12 +75,25 @@ if(isset($_COOKIE['tutor_id'])){
       <?php
        }
       }else{
-         echo '<p class="empty">no assignments added yet!</p>';
+         echo '<p class="empty">no comments added yet!</p>';
       }
       ?>
       </div>
    
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php include '../components/footer.php'; ?>
 

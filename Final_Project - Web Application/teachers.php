@@ -41,7 +41,7 @@ if(isset($_COOKIE['user_id'])){
          <h3>Become A Resource Person</h3>
          <p>"Join Us and Inspire the Next Generation of Software Engineers!"
 Become a part of our growing community of experts dedicated to sharing knowledge and shaping future tech leaders. Let’s work together to bridge the gap between theory and practice, empowering learners to achieve their career goals. Start making an impact today!</p>
-         <a href="admin/register.php" class="inline-btn">Get Access</a>
+         <a href="resource_person_form.php" class="inline-btn">Get Access</a>
       </div>
 
    </div>

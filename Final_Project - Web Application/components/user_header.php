@@ -1,5 +1,16 @@
+<?php
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+?>
 
-<!-- header section-->
 <header class="header">
 
    <section class="flex">
@@ -19,26 +30,39 @@
       </div>
 
       <div class="profile">
+         <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$user_id]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         ?>
+         <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
+         <h3><?= $fetch_profile['name']; ?></h3>
+         <span>student</span>
+         <a href="profile.php" class="btn">view profile</a>
          <div class="flex-btn">
             <a href="login.php" class="option-btn">login</a>
             <a href="register.php" class="option-btn">register</a>
          </div>
          <a href="components/user_logout.php" onclick="return confirm('logout from this website?');" class="delete-btn">logout</a>
-         
+         <?php
+            }else{
+         ?>
          <h3>please login or register</h3>
           <div class="flex-btn">
             <a href="login.php" class="option-btn">login</a>
             <a href="register.php" class="option-btn">register</a>
          </div>
-         
+         <?php
+            }
+         ?>
       </div>
 
    </section>
 
 </header>
 
-
-<!-- navigation bar section  -->
+<!-- side bar section starts  -->
 
 <div class="side-bar">
 
@@ -47,12 +71,27 @@
    </div>
 
    <div class="profile">
+         <?php
+            $select_profile = $conn->prepare("SELECT * FROM `users` WHERE id = ?");
+            $select_profile->execute([$user_id]);
+            if($select_profile->rowCount() > 0){
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+         ?>
+         <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
+         <h3><?= $fetch_profile['name']; ?></h3>
+         <span>student</span>
+         <a href="profile.php" class="btn">view profile</a>
+         <?php
+            }else{
+         ?>
          <h3>please login or register</h3>
           <div class="flex-btn" style="padding-top: .5rem;">
             <a href="login.php" class="option-btn">login</a>
             <a href="register.php" class="option-btn">register</a>
          </div>
-         
+         <?php
+            }
+         ?>
       </div>
 
    <nav class="navbar">
@@ -61,6 +100,7 @@
       <a href="courses.php"><i class="fas fa-graduation-cap"></i><span>Courses</span></a>
       <a href="teachers.php"><i class="fas fa-chalkboard-user"></i><span>Resource People</span></a>
       <a href="contact.php"><i class="fas fa-headset"></i><span>Contact Us</span></a>
+	<a href="notification.php"><i class="fas fa-envelope"></i><span>Notifications</span></a>
    </nav>
 
 </div>

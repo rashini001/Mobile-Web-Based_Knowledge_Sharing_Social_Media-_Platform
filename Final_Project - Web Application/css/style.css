@@ -169,7 +169,16 @@ section{
    padding: 1.5rem;
    text-align: center;
    width: 100%;
-   font-size: 2rem;
+   font-size: 1.5rem;
+   color: var(--red);
+}
+.already-submitted{
+   background-color: var(--white);
+   border-radius: .5rem;
+   padding: 1.5rem;
+   text-align: center;
+   width: 100%;
+   font-size: 1rem;
    color: var(--red);
 }
 
@@ -1455,8 +1464,290 @@ section{
    overflow-x: hidden;
 }
 
+/* Vibrant Colorful Notifications CSS */
+
+/* Notifications Container */
+.notifications {
+    padding: 3rem 2rem;
+    max-width: 800px;
+    margin: 40 auto;
+    font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+    background: linear-gradient(135deg,gray);
+    border-radius: 0px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.notifications .heading {
+    text-align: center;
+    font-size: 3.8rem;
+    font-weight: 800;
+    background: linear-gradient( black);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 3rem;
+    position: relative;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.notifications .heading::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 6px;
+    background: linear-gradient(90deg, black, #eeeeee);
+    margin: 1.5rem auto 0;
+    border-radius: 10px;
+    
+}
+
+/* Notification Cards */
+.notifications .box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.notifications .box {
+    background: #999fa8;
+    border-radius: 18px;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: none;
+
+}
+
+.notifications .box.unread {
+    background: white;
+    box-shadow: 0 8px 25px rgba(6, 1, 54, 0.1);
+    border-left: 4px solid #1a2980; /* Changed to dark blue accent */
+}
 
 
+.notifications .box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Notification Icon */
+.notifications .box .icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #ba0410;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.notifications .box:hover .icon {
+    transform: rotate(20deg) scale(1.1);
+}
+
+.notifications .box .icon i.fa-envelope {
+    background: linear-gradient(135deg, #4776E6, #8E54E9);
+    box-shadow: 0 8px 20px rgba(71, 118, 230, 0.3);
+}
+
+.notifications .box .icon i.fa-exclamation-circle {
+    background: linear-gradient(135deg, #FF416C, #FF4B2B);
+    box-shadow: 0 8px 20px rgba(255, 65, 108, 0.3);
+}
+
+.notifications .box .icon i.fa-bell {
+   
+    box-shadow: 0 8px 20px rgba(29, 151, 108, 0.3);
+}
+
+/* Notification Content */
+.notifications .box .content {
+    flex-grow: 1;
+    position: relative;
+}
+
+.notifications .box .content p {
+    font-size: 2.2rem;
+    color: #2d3436;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.notifications .box.unread .content p {
+    color: #2d3436;
+
+}
+
+.notifications .box .content .date {
+    font-size: 1.9rem;
+    color:#5c5b61;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+
+}
+.notifications .box .content .date i.fa-clock {
+    color: #06022e;
+    font-size: 1.8rem; /* Extra large size */
+    min-width: 2.2rem; /* Ensures consistent spacing */
+    text-align: center;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(255, 78, 80, 0.2);
+}
+
+.notifications .box .content .date i {
+    color: #06022e;
+    font-size: 1rem;
+}
+
+/* Action Button */
+.notifications .box .inline-btn {
+    align-self: center;
+    padding: 0.8rem 2.2rem;
+    background: linear-gradient(to right, #FF4E50, #F9D423);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(255, 78, 80, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    letter-spacing: 0.5px;
+}
+
+.notifications .box .inline-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 78, 80, 0.4);
+}
+
+.notifications .box .inline-btn:active {
+    transform: translateY(1px);
+}
+
+/* Rainbow Pulse Animation for Unread Notifications */
+@keyframes rainbowPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 78, 80, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 78, 80, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 78, 80, 0); }
+}
+
+.notifications .box.unread {
+    animation: rainbowPulse 2s infinite;
+}
+
+/* Empty State */
+.notifications .empty {
+    text-align: center;
+    padding: 4rem 0;
+    background: rgba(255,255,255,0.7);
+    border-radius: 18px;
+    backdrop-filter: blur(5px);
+}
+
+.notifications .empty img {
+    max-width: 250px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.notifications .empty p {
+    font-size: 1.4rem;
+    background: linear-gradient(darkred);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .notifications {
+        padding: 2rem 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .notifications .box {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.8rem;
+    }
+    
+    .notifications .box .inline-btn {
+        align-self: stretch;
+        margin-top: 1rem;
+    }
+    
+    .notifications .heading {
+        font-size: 2.3rem;
+    }
+    
+    .notifications .box .icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
+/* Dark Blue Register Button (Specific for Resource Person Approval) */
+.notifications .box .register-btn {
+    background:#110963; /* Dark blue */
+    box-shadow: 0 6px 20px rgba(26, 41, 128, 0.3);
+}
+
+.notifications .box .register-btn:hover {
+    background: #0f1a5a; /* Darker blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(26, 41, 128, 0.4);
+}
+
+.notifications .box .register-btn:active {
+    background: #0a1240; /* Even darker on click */
+    transform: translateY(1px);
+}
+
+/* Colorful Dots Decorations */
+.notifications::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,78,80,0.1) 0%, rgba(255,78,80,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.notifications::before {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(249,212,35,0.1) 0%, rgba(249,212,35,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
 
 
 

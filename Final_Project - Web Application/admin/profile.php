@@ -17,11 +17,11 @@
    $select_contents->execute([$tutor_id]);
    $total_contents = $select_contents->rowCount();
 
-   $select_likes = $conn->prepare("SELECT * FROM `likes` WHERE tutor_id = ?");
+   $select_likes = $conn->prepare("SELECT * FROM `submissions` WHERE assignment_id = ?");
    $select_likes->execute([$tutor_id]);
    $total_likes = $select_likes->rowCount();
 
-   $select_comments = $conn->prepare("SELECT * FROM `comment` WHERE tutor_id = ?");
+   $select_comments = $conn->prepare("SELECT * FROM `assignments` WHERE tutor_id = ?");
    $select_comments->execute([$tutor_id]);
    $total_comments = $select_comments->rowCount();
 
@@ -70,13 +70,13 @@
          </div>
          <div class="box">
             <span><?= $total_likes; ?></span>
-            <p>total likes</p>
-            <a href="contents.php" class="btn">view contents</a>
+            <p>total submissions</p>
+            <a href="view_submission.php" class="btn">view submissions</a>
          </div>
          <div class="box">
             <span><?= $total_comments; ?></span>
-            <p>total comments</p>
-            <a href="comments.php" class="btn">view assaignments</a>
+            <p>total assignments</p>
+            <a href="view_assignment.php" class="btn">view assaignments</a>
          </div>
       </div>
    </div>
